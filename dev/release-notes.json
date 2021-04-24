@@ -1,0 +1,21 @@
+[
+    {
+        "name" : "",
+        "notes" : [
+            "[New] Something is new"
+        ],
+        "pub_date" : "2021-04-24T13:26:55Z",
+        "version" : "1.0.1"
+    },
+    {
+        "name" : "The first release",
+        "notes" : [
+            "[Added] Added something",
+            "[Fixed] Fixed something",
+            "[Imporved] Improved something",
+            "[Removed] Removed something"
+        ],
+        "pub_date" : "2021-04-21T01:23:45Z",
+        "version" : "1.0.0"
+    }
+]
