@@ -24,7 +24,7 @@
     </body>
     <script>
         var releaseNotes = document.getElementById('release-notes');
-
+        
         fetch('/dev/release-notes.json')
             .then(res => res.json())
             .then(data => {

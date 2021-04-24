@@ -11,6 +11,7 @@ export declare class ReleaseNotes extends LitElement {
     render(): TemplateResult;
     getSection(release: ReleaseData): TemplateResult;
     getReleaseHeaderName(release: ReleaseData): string;
+    getReleaseNoteElement(note: string): TemplateResult;
 }
 declare class ReleaseData {
     name?: string;

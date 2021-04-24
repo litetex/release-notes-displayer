@@ -17,30 +17,32 @@ let ReleaseNotes = class ReleaseNotes extends LitElement {
         this.data = [];
     }
     render() {
-        if (!this.data)
+        if (!this.data || this.data.length == 0)
             return html `
-        <div class="loading-indicator">
-          <div></div>
-          <div></div>
-          <div></div>
+        <div class="release-notes-container">
+          <div class="loading-indicator">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
-        <slot></slot>
       `;
         return html `
-      ${this.data.map((release) => html `${this.getSection(release)}`)}
-      <slot></slot>
+      <div class="release-notes-container">
+        ${this.data.map(release => html `${this.getSection(release)}`)}
+      </div>
     `;
     }
     getSection(release) {
         return html `
       <section class="release-note position-relative center-container">
         <header class="timeline-decorator d-flex flex-items-center">
-          <span class="release-version">${release.version}</span>
+          <span class="release-version border-box">${release.version}</span>
           <div class="release-title">${this.getReleaseHeaderName(release)}</div>
         </header>
         <!-- bUild list-->
-        <ul class="list-style-none">
-          <li></li>
+        <ul class="change-log">
+          ${release.notes.map(note => html `${this.getReleaseNoteElement(note)}`)}
         </ul>
       </section>`;
     }
@@ -55,8 +57,46 @@ let ReleaseNotes = class ReleaseNotes extends LitElement {
         }
         return result;
     }
+    getReleaseNoteElement(note) {
+        if (!note)
+            return html ``;
+        var changeText = '';
+        var badgeText = '';
+        if (note.indexOf('[') != -1 && note.indexOf(']') != -1) {
+            try {
+                badgeText = note.substring(note.indexOf('[') + 1, note.indexOf(']'));
+                changeText = note.substring(note.indexOf(']') + 1);
+            }
+            catch (e) {
+                console.warn('Unable to parse', e);
+            }
+        }
+        if (!changeText)
+            changeText = note;
+        if (!badgeText)
+            badgeText = "Changed";
+        return html `
+      <li class="change-log-list-entry d-flex">
+        <div class="change-badge ${badgeText ? ("change-badge-" + badgeText.trim().toLocaleLowerCase()) : ""} border-box">
+          ${badgeText}
+        </div>
+        <div class="change-text">
+          ${changeText}
+        </div>
+      </li>
+    `;
+    }
 };
 ReleaseNotes.styles = css `
+    .release-notes-container {
+        --primary-badge-color: rgba(255,255,255,0.75);
+        --version-badge-size: 65px;
+        --background-color-primary: #24292e; 
+        --text-color-primary: rgba(255,255,255,0.75);
+
+        background-color: var(--background-color-primary);
+    }
+    
     .loading-indicator {
       display: inline-block;
       position: relative;
@@ -68,7 +108,7 @@ ReleaseNotes.styles = css `
       position: absolute;
       left: 8px;
       width: 16px;
-      background: #000;
+      background: var(--text-color-primary);
       animation: loading-indicator 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
     }
     .loading-indicator div:nth-child(1) {
@@ -112,7 +152,6 @@ ReleaseNotes.styles = css `
     }
 
     .timeline-decorator::before {
-      color: rgba(255,255,255,0.65);
       content: "";
       width: 3px;
       position: absolute;
@@ -120,35 +159,42 @@ ReleaseNotes.styles = css `
       background-image: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.1));
       top: 0;
       bottom: 0;
-      left: calc(65px / 2 + 16px);
-      z-index: -1;
+      left: calc(var(--version-badge-size) / 2);
     }
 
     .release-note {
       display: block;
+
+      color: var(--primary-badge-color);
     }
 
     .list-style-none {
       list-style: none;
     }
 
-    .release-version {
-      color:rgba(255,255,255,0.65);
+    .border-box {
+      box-sizing: border-box;
+    }
 
-      width: 65px;
+    .release-version {
+      color: var(--primary-badge-color);
+
+      width: var(--version-badge-size);
       text-align: center;
       background-color: #6f42c1;
+
+      z-index: 1;
 
       font-weight: 600;
       display: inline-block;
       border-radius: 3px;
-      box-sizing: border-box;
 
       padding: 4px;
       margin-right: 8px;
     }
 
     .release-title {
+      color: var(--text-color-primary);
       display: inline-block;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -157,6 +203,48 @@ ReleaseNotes.styles = css `
 
       font-weight: 300;
       font-size: 20px;
+    }
+
+    .change-log {
+      list-style: none;
+      line-height: 1.5;
+      margin-left: 74px;
+    }
+
+    .change-log-list-entry {
+      align-items: flex-start;
+    }
+
+    .change-badge {
+      color: var(--primary-badge-color);
+      background-color: #0366d6;
+      display: inline;
+      flex: 0 0 var(--version-badge-size);
+      font-size: 10px;
+      font-weight: 600;
+      border-radius: 3px;
+      margin-right: 8px;
+      padding: 2px 5px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .change-badge-added,
+    .change-badge-new {
+      background-color: #28a745;
+    }
+
+    .change-badge-improved,
+    .change-badge-fixed {
+      background-color: #0366d6;
+    }
+
+    .change-badge-removed {
+      background-color: #d73a49
+    }
+
+    .change-text {
+      color: var(--text-color-primary);
     }
   `;
 __decorate([
