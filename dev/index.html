@@ -11,7 +11,15 @@
                 display: flex;
             }
 
+            #main {
+                width: 100%;
+                display: flex;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
             #release-notes {
+                width: 1280px;
                 max-width: 1280px;
                 margin-left: auto;
                 margin-right: auto;
@@ -28,17 +36,25 @@
         </style>
     </head>
     <body>
-        <release-notes id='release-notes' issueBaseUrl='https://localhost/issues'>
-        </release-notes>
+        <div id="main">
+            <release-notes-displayer id='release-notes' issueBaseUrl='https://localhost/issues'/>
+        </div>
     </body>
     <script>
         var releaseNotes = document.getElementById('release-notes');
         
-        fetch('/dev/release-notes.json')
-            .then(res => res.json())
-            .then(data => {
-                //data.sort((a,b) => semver.compare(a.version,b.version)); 
-                releaseNotes.data = data;
-            });
+
+        setTimeout(() => {
+            console.log('HI');
+            init();
+        }, 1000);
+
+        function init() {
+            fetch('/dev/release-notes.json')
+                .then(res => res.json())
+                .then(data => {
+                    releaseNotes.data = data;
+                });
+        }
     </script>
 </html>

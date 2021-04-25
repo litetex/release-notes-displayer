@@ -102,6 +102,7 @@ export class ReleaseNotes extends LitElement {
       position: relative;
       width: 80px;
       height: 80px;
+      background-color: var(--background-color-primary);
     }
     .loading-indicator div {
       display: inline-block;
