@@ -7,12 +7,6 @@ import {
   TemplateResult,
 } from 'lit-element';
 
-/**
- * An example element.
- *
- * @slot - This element has a slot
- * @csspart button - The button
- */
 @customElement('release-notes-displayer')
 export class ReleaseNotes extends LitElement {
   // Light mode:
