@@ -2,6 +2,8 @@
   "name": "release-notes",
   "version": "0.0.0",
   "description": "A webcomponent which displays release notes",
+  "author": "litetex",
+  "license": "MIT",
   "main": "dist/release-notes.js",
   "module": "dist/release-notes.js",
   "type": "module",
@@ -18,8 +20,6 @@
     "lit-element",
     "typescript"
   ],
-  "author": "litetex",
-  "license": "MIT",
   "dependencies": {
     "lit-element": "^2.4.0"
   },
