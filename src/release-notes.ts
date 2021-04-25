@@ -10,12 +10,37 @@ import {LitElement, html, customElement, property, css, TemplateResult} from 'li
 export class ReleaseNotes extends LitElement {
   static styles = css`
     .release-notes-container {
-        --primary-badge-color: rgba(255,255,255,0.75);
-        --version-badge-size: 65px;
         --background-color-primary: #24292e; 
-        --text-color-primary: rgba(255,255,255,0.75);
+        --color-primary: 255,255,255;
+        /* --background-color-primary: #fff; 
+        --color-primary: 0,0,0; */
+        --text-color-primary: rgba(var(--color-primary),0.75);
+        --font-size-primary: 14px;
+        --font-family-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 
+        --badge-text-color-primary: rgba(255,255,255,0.75);
+
+        --version-badge-font-size: calc(var(--font-size-primary) * 0.95);
+        --version-badge-background-color: #6f42c1;
+        --version-badge-width: 65px;
+
+        --header-title-font-size: calc(var(--font-size-primary) * 1.5);
+
+        --timeline-width: 3px;
+        --timeline-color-primary: rgba(var(--color-primary),0.1);
+        --timeline-color-fade-out: rgba(var(--color-primary),0);
+
+        --release-note-padding-y: 20px;
+        --release-note-padding-x: 16px;
+
+        --change-badge-font-size: calc(var(--font-size-primary) * 0.7);
+        --change-text-font-size: var(--font-size-primary);
+
+        color: var(--text-color-primary);
         background-color: var(--background-color-primary);
+
+        font-size: var(--font-size-primary);
+        font-family: var(--font-family-primary);
     }
     
     .loading-indicator {
@@ -72,21 +97,34 @@ export class ReleaseNotes extends LitElement {
       align-items: center;
     }
 
+    .release-note:first-of-type .timeline-decorator::before {
+      background-image: linear-gradient(to bottom, var(--timeline-color-fade-out), var(--timeline-color-primary) var(--release-note-padding-y))
+    }
+
+    .release-note:last-of-type .timeline-decorator::before {
+      background-image: linear-gradient(to bottom, var(--timeline-color-primary) calc(100% - var(--release-note-padding-y)), var(--timeline-color-fade-out));
+    }
+
     .timeline-decorator::before {
       content: "";
-      width: 3px;
+      width: var(--timeline-width);
       position: absolute;
 
-      background-image: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.1));
+      background-image: linear-gradient(to bottom, var(--timeline-color-primary), var(--timeline-color-primary));
       top: 0;
       bottom: 0;
-      left: calc(var(--version-badge-size) / 2);
+      left: calc(var(--version-badge-width) / 2 + var(--release-note-padding-x));
     }
 
     .release-note {
       display: block;
 
-      color: var(--primary-badge-color);
+      color: var(--badge-text-color-primary);
+
+      padding-top: var(--release-note-padding-y);
+      padding-bottom: var(--release-note-padding-y);
+      padding-left: var(--release-note-padding-x);
+      padding-right: var(--release-note-padding-x);
     }
 
     .list-style-none {
@@ -97,16 +135,17 @@ export class ReleaseNotes extends LitElement {
       box-sizing: border-box;
     }
 
-    .release-version {
-      color: var(--primary-badge-color);
+    .release-version-badge {
+      color: var(--badge-text-color-primary);
 
-      width: var(--version-badge-size);
+      width: var(--version-badge-width);
       text-align: center;
-      background-color: #6f42c1;
+      background-color: var(--version-badge-background-color);
 
       z-index: 1;
 
       font-weight: 600;
+      font-size: var(--version-badge-font-size);
       display: inline-block;
       border-radius: 3px;
 
@@ -123,13 +162,14 @@ export class ReleaseNotes extends LitElement {
       vertical-align: top;
 
       font-weight: 300;
-      font-size: 20px;
+      font-size: var(--header-title-font-size);
     }
 
     .change-log {
       list-style: none;
       line-height: 1.5;
-      margin-left: 74px;
+      margin-left: calc(var(--version-badge-width) + var(--release-note-padding-x));
+      padding-left: 0px;
     }
 
     .change-log-list-entry {
@@ -137,11 +177,11 @@ export class ReleaseNotes extends LitElement {
     }
 
     .change-badge {
-      color: var(--primary-badge-color);
+      color: var(--badge-text-color-primary);
       background-color: #0366d6;
       display: inline;
-      flex: 0 0 var(--version-badge-size);
-      font-size: 10px;
+      flex: 0 0 var(--version-badge-width);
+      font-size: var(--change-badge-font-size);
       font-weight: 600;
       border-radius: 3px;
       margin-right: 8px;
@@ -166,11 +206,15 @@ export class ReleaseNotes extends LitElement {
 
     .change-text {
       color: var(--text-color-primary);
+      font-size: var(--change-text-font-size);
     }
   `;
 
+  @property({type: String})
+  dateFormatter: (date: Date) => string = date => date.toLocaleDateString();
+
   @property({type: Array})
-  data : Array<ReleaseData> = [];
+  data: Array<ReleaseData> = [];
 
   render() {
     if(!this.data || this.data.length == 0)
@@ -195,10 +239,9 @@ export class ReleaseNotes extends LitElement {
     return html`
       <section class="release-note position-relative center-container">
         <header class="timeline-decorator d-flex flex-items-center">
-          <span class="release-version border-box">${release.version}</span>
+          <span class="release-version-badge border-box">${release.version}</span>
           <div class="release-title">${this.getReleaseHeaderName(release)}</div>
         </header>
-        <!-- bUild list-->
         <ul class="change-log">
           ${release.notes.map(note => html`${this.getReleaseNoteElement(note)}`)}
         </ul>
@@ -208,12 +251,12 @@ export class ReleaseNotes extends LitElement {
   getReleaseHeaderName(release: ReleaseData) : string {
     var result: string = '';
 
-    if(release.pub_date != null)
-      result += new Date(release.pub_date).toLocaleString();
+    if(release.pub_date != null && release.pub_date)
+      result += this.dateFormatter(new Date(release.pub_date));
 
-    if(release.name != null) {
+    if(release.name != null && release.name) {
       if(release.pub_date != null)
-        result += ' ';
+        result += ' - ';
       
       result += release.name;
     }

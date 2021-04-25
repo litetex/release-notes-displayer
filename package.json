@@ -21,7 +21,6 @@
   "author": "litetex",
   "license": "MIT",
   "dependencies": {
-    "@types/semver": "7.3.4",
     "lit-element": "2.4.0"
   },
   "devDependencies": {

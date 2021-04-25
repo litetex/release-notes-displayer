@@ -8,7 +8,6 @@
         <style>
             body {
                 margin: 0;
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
                 display: flex;
             }
 
@@ -20,7 +19,14 @@
         </style>
     </head>
     <body>
-        <release-notes id='release-notes' />
+        <release-notes id='release-notes'>
+            <style>
+                .release-notes-container {
+                    --color-primary: 255,0,255;
+                    background-color: red;
+                }
+            </style>
+        </release-notes>
     </body>
     <script>
         var releaseNotes = document.getElementById('release-notes');

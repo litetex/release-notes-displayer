@@ -1,8 +1,24 @@
 [
     {
-        "name" : "",
+        "name" : "New world",
         "notes" : [
             "[New] Something is new"
+        ],
+        "pub_date" : "2021-04-25T20:12:45Z",
+        "version" : "2.0.0"
+    },
+    {
+        "name" : "",
+        "notes" : [
+            "Somebody forgot the date and the name :o"
+        ],
+        "pub_date" : "",
+        "version" : "1.1.0"
+    },
+    {
+        "name" : "",
+        "notes" : [
+            "[Changed] Something was changed"
         ],
         "pub_date" : "2021-04-24T13:26:55Z",
         "version" : "1.0.1"
