@@ -11,21 +11,24 @@
                 display: flex;
             }
 
-            release-notes {
+            #release-notes {
                 max-width: 1280px;
                 margin-left: auto;
                 margin-right: auto;
+
+
+                /* Light mode */
+                --release-notes-background-color-primary: #fff; 
+                --release-notes-color-primary: 0,0,0;
+
+                /* Changes the font size */
+                /* --release-notes-font-size-primary: 8px; */
+               
             }
         </style>
     </head>
     <body>
-        <release-notes id='release-notes'>
-            <style>
-                .release-notes-container {
-                    --color-primary: 255,0,255;
-                    background-color: red;
-                }
-            </style>
+        <release-notes id='release-notes' issueBaseUrl='https://localhost/issues'>
         </release-notes>
     </body>
     <script>

@@ -2,7 +2,7 @@
     {
         "name" : "New world",
         "notes" : [
-            "[New] Something is new"
+            "[New] Something is new #33"
         ],
         "pub_date" : "2021-04-25T20:12:45Z",
         "version" : "2.0.0"
@@ -10,7 +10,7 @@
     {
         "name" : "",
         "notes" : [
-            "Somebody forgot the date and the name :o"
+            "Somebody forgot the date and the name :o - #111"
         ],
         "pub_date" : "",
         "version" : "1.1.0"
@@ -26,7 +26,7 @@
     {
         "name" : "The first release",
         "notes" : [
-            "[Added] Added something",
+            "[Added] Added something #33 #FakeIssueNumber",
             "[Fixed] Fixed something",
             "[Improved] Improved something",
             "[Removed] Removed something",

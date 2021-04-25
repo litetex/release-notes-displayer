@@ -7,8 +7,9 @@ import { LitElement, TemplateResult } from 'lit-element';
  */
 export declare class ReleaseNotes extends LitElement {
     static styles: import("lit-element").CSSResult;
-    dateFormatter: (date: Date) => string;
     data: Array<ReleaseData>;
+    dateFormatter: (date: Date) => string;
+    issueBaseUrl: string;
     render(): TemplateResult;
     getSection(release: ReleaseData): TemplateResult;
     getReleaseHeaderName(release: ReleaseData): string;

@@ -14,8 +14,9 @@ import { LitElement, html, customElement, property, css } from 'lit-element';
 let ReleaseNotes = class ReleaseNotes extends LitElement {
     constructor() {
         super(...arguments);
-        this.dateFormatter = date => date.toLocaleDateString();
         this.data = [];
+        this.dateFormatter = date => date.toLocaleDateString();
+        this.issueBaseUrl = '';
     }
     render() {
         if (!this.data || this.data.length == 0)
@@ -73,47 +74,62 @@ let ReleaseNotes = class ReleaseNotes extends LitElement {
         }
         if (!changeText)
             changeText = note;
+        changeText = changeText.trim();
         if (!badgeText)
             badgeText = "Changed";
+        //if(this.issueBaseUrl)
+        //  changeText = changeText.replace(/#(\d+)/i, html`<a href="${this.issueBaseUrl}$1">$1</a>`);
+        var changePieces = [changeText];
+        if (this.issueBaseUrl)
+            changePieces = changeText.split(/(#\d+)/i);
         return html `
       <li class="change-log-list-entry d-flex">
         <div class="change-badge ${badgeText ? ("change-badge-" + badgeText.trim().toLocaleLowerCase()) : ""} border-box">
           ${badgeText}
         </div>
         <div class="change-text">
-          ${changeText}
+          ${changePieces.map(piece => {
+            var issuePieces = piece.match(/#(\d+)/i);
+            if (issuePieces)
+                return html `<a class="change-text-link" href="${new URL(issuePieces[1], this.issueBaseUrl).href}">${piece}</a>`;
+            else
+                return piece;
+        })}
         </div>
       </li>
     `;
     }
 };
+// Light mode:  
+/* --background-color-primary: #fff; */
+/* --color-primary: 0,0,0; */
 ReleaseNotes.styles = css `
     .release-notes-container {
-        --background-color-primary: #24292e; 
-        --color-primary: 255,255,255;
-        /* --background-color-primary: #fff; 
-        --color-primary: 0,0,0; */
-        --text-color-primary: rgba(var(--color-primary),0.75);
-        --font-size-primary: 14px;
-        --font-family-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+        --background-color-primary: var(--release-notes-background-color-primary, #24292e); 
+        --color-primary: var(--release-notes-color-primary, 255,255,255);
+        
+        --text-color-primary: var(--release-notes-text-color-primary, rgba(var(--color-primary),0.75));
+        --font-size-primary: var(--release-notes-font-size-primary, 14px);
+        --font-family-primary: var(--release-notes-font-family-primary, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol");
 
-        --badge-text-color-primary: rgba(255,255,255,0.75);
+        --badge-text-color-primary: var(--release-notes-badge-text-color-primary, rgba(255,255,255,0.75));
 
-        --version-badge-font-size: calc(var(--font-size-primary) * 0.95);
-        --version-badge-background-color: #6f42c1;
-        --version-badge-width: 65px;
+        --version-badge-font-size: var(--release-notes-version-badge-font-size, calc(var(--font-size-primary) * 0.95));
+        --version-badge-background-color: var(--release-notes-version-badge-background-color, #6f42c1);
+        --version-badge-width: var(--release-notes-version-badge-width, 65px);
 
-        --header-title-font-size: calc(var(--font-size-primary) * 1.5);
+        --header-title-font-size: var(--release-notes-header-title-font-size, calc(var(--font-size-primary) * 1.5));
 
-        --timeline-width: 3px;
-        --timeline-color-primary: rgba(var(--color-primary),0.1);
-        --timeline-color-fade-out: rgba(var(--color-primary),0);
+        --timeline-width: var(--release-notes-timeline-width, 3px);
+        --timeline-color-primary: var(--release-notes-timeline-color-primary, rgba(var(--color-primary),0.1));
+        --timeline-color-fade-out: var(--release-notes-timeline-color-fade-out, rgba(var(--color-primary),0));
 
-        --release-note-padding-y: 20px;
-        --release-note-padding-x: 16px;
+        --release-note-padding-y: var(--release-notes-release-note-padding-y, 20px);
+        --release-note-padding-x: var(--release-notes-release-note-padding-x, 16px);
 
-        --change-badge-font-size: calc(var(--font-size-primary) * 0.7);
-        --change-text-font-size: var(--font-size-primary);
+        --change-badge-font-size: var(--release-notes-change-badge-font-size, calc(var(--font-size-primary) * 0.7));
+        --change-text-font-size: var(--release-notes-change-text-font-size, var(--font-size-primary));
+        --change-text-link-color: var(--release-notes-change-text-link-color, #9f7be1);
 
         color: var(--text-color-primary);
         background-color: var(--background-color-primary);
@@ -259,7 +275,7 @@ ReleaseNotes.styles = css `
       color: var(--badge-text-color-primary);
       background-color: #0366d6;
       display: inline;
-      flex: 0 0 var(--version-badge-width);
+      flex: 0 0 calc(var(--font-size-primary) * 4.5 + 5px);
       font-size: var(--change-badge-font-size);
       font-weight: 600;
       border-radius: 3px;
@@ -287,13 +303,26 @@ ReleaseNotes.styles = css `
       color: var(--text-color-primary);
       font-size: var(--change-text-font-size);
     }
+
+    a.change-text-link {
+      text-decoration: none;
+      color: var(--change-text-link-color);
+    }
+
+    a.change-text-link:hover {
+      text-decoration: underline;
+      color: var(--change-text-link-color);
+    }
   `;
+__decorate([
+    property({ type: Array })
+], ReleaseNotes.prototype, "data", void 0);
 __decorate([
     property({ type: String })
 ], ReleaseNotes.prototype, "dateFormatter", void 0);
 __decorate([
-    property({ type: Array })
-], ReleaseNotes.prototype, "data", void 0);
+    property({ type: String })
+], ReleaseNotes.prototype, "issueBaseUrl", void 0);
 ReleaseNotes = __decorate([
     customElement('release-notes')
 ], ReleaseNotes);
