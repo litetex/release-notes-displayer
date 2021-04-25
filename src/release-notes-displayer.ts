@@ -13,7 +13,7 @@ import {
  * @slot - This element has a slot
  * @csspart button - The button
  */
-@customElement('release-notes')
+@customElement('release-notes-displayer')
 export class ReleaseNotes extends LitElement {
   // Light mode:
   /* --background-color-primary: #fff; */
@@ -424,6 +424,6 @@ class ReleaseData {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'release-notes': ReleaseNotes;
+    'release-notes-displayer': ReleaseNotes;
   }
 }

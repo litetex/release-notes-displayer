@@ -1,12 +1,16 @@
 {
-  "name": "release-notes",
+  "name": "release-notes-displayer",
   "version": "0.0.0",
   "description": "A webcomponent which displays release notes",
   "author": "litetex",
   "license": "MIT",
-  "main": "dist/release-notes.js",
-  "module": "dist/release-notes.js",
+  "main": "dist/release-notes-displayer.js",
+  "module": "dist/release-notes-displayer.js",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/litetex/release-notes-displayer.git"
+  },
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
