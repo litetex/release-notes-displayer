@@ -1,4 +1,11 @@
-import {LitElement, html, customElement, property, css, TemplateResult} from 'lit-element';
+import {
+  LitElement,
+  html,
+  customElement,
+  property,
+  css,
+  TemplateResult,
+} from 'lit-element';
 
 /**
  * An example element.
@@ -8,44 +15,94 @@ import {LitElement, html, customElement, property, css, TemplateResult} from 'li
  */
 @customElement('release-notes')
 export class ReleaseNotes extends LitElement {
-  // Light mode:  
+  // Light mode:
   /* --background-color-primary: #fff; */
   /* --color-primary: 0,0,0; */
   static styles = css`
     .release-notes-container {
-        --background-color-primary: var(--release-notes-background-color-primary, #24292e); 
-        --color-primary: var(--release-notes-color-primary, 255,255,255);
-        
-        --text-color-primary: var(--release-notes-text-color-primary, rgba(var(--color-primary),0.75));
-        --font-size-primary: var(--release-notes-font-size-primary, 14px);
-        --font-family-primary: var(--release-notes-font-family-primary, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol");
+      --background-color-primary: var(
+        --release-notes-background-color-primary,
+        #24292e
+      );
+      --color-primary: var(--release-notes-color-primary, 255, 255, 255);
 
-        --badge-text-color-primary: var(--release-notes-badge-text-color-primary, rgba(255,255,255,0.75));
+      --text-color-primary: var(
+        --release-notes-text-color-primary,
+        rgba(var(--color-primary), 0.75)
+      );
+      --font-size-primary: var(--release-notes-font-size-primary, 14px);
+      --font-family-primary: var(
+        --release-notes-font-family-primary,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Helvetica,
+        'Apple Color Emoji',
+        Arial,
+        sans-serif,
+        'Segoe UI Emoji',
+        'Segoe UI Symbol'
+      );
 
-        --version-badge-font-size: var(--release-notes-version-badge-font-size, calc(var(--font-size-primary) * 0.95));
-        --version-badge-background-color: var(--release-notes-version-badge-background-color, #6f42c1);
-        --version-badge-width: var(--release-notes-version-badge-width, 65px);
+      --badge-text-color-primary: var(
+        --release-notes-badge-text-color-primary,
+        rgba(255, 255, 255, 0.75)
+      );
 
-        --header-title-font-size: var(--release-notes-header-title-font-size, calc(var(--font-size-primary) * 1.5));
+      --version-badge-font-size: var(
+        --release-notes-version-badge-font-size,
+        calc(var(--font-size-primary) * 0.95)
+      );
+      --version-badge-background-color: var(
+        --release-notes-version-badge-background-color,
+        #6f42c1
+      );
+      --version-badge-width: var(--release-notes-version-badge-width, 65px);
 
-        --timeline-width: var(--release-notes-timeline-width, 3px);
-        --timeline-color-primary: var(--release-notes-timeline-color-primary, rgba(var(--color-primary),0.1));
-        --timeline-color-fade-out: var(--release-notes-timeline-color-fade-out, rgba(var(--color-primary),0));
+      --header-title-font-size: var(
+        --release-notes-header-title-font-size,
+        calc(var(--font-size-primary) * 1.5)
+      );
 
-        --release-note-padding-y: var(--release-notes-release-note-padding-y, 20px);
-        --release-note-padding-x: var(--release-notes-release-note-padding-x, 16px);
+      --timeline-width: var(--release-notes-timeline-width, 3px);
+      --timeline-color-primary: var(
+        --release-notes-timeline-color-primary,
+        rgba(var(--color-primary), 0.1)
+      );
+      --timeline-color-fade-out: var(
+        --release-notes-timeline-color-fade-out,
+        rgba(var(--color-primary), 0)
+      );
 
-        --change-badge-font-size: var(--release-notes-change-badge-font-size, calc(var(--font-size-primary) * 0.7));
-        --change-text-font-size: var(--release-notes-change-text-font-size, var(--font-size-primary));
-        --change-text-link-color: var(--release-notes-change-text-link-color, #9f7be1);
+      --release-note-padding-y: var(
+        --release-notes-release-note-padding-y,
+        20px
+      );
+      --release-note-padding-x: var(
+        --release-notes-release-note-padding-x,
+        16px
+      );
 
-        color: var(--text-color-primary);
-        background-color: var(--background-color-primary);
+      --change-badge-font-size: var(
+        --release-notes-change-badge-font-size,
+        calc(var(--font-size-primary) * 0.7)
+      );
+      --change-text-font-size: var(
+        --release-notes-change-text-font-size,
+        var(--font-size-primary)
+      );
+      --change-text-link-color: var(
+        --release-notes-change-text-link-color,
+        #9f7be1
+      );
 
-        font-size: var(--font-size-primary);
-        font-family: var(--font-family-primary);
+      color: var(--text-color-primary);
+      background-color: var(--background-color-primary);
+
+      font-size: var(--font-size-primary);
+      font-family: var(--font-family-primary);
     }
-    
+
     .loading-indicator {
       display: inline-block;
       position: relative;
@@ -77,7 +134,8 @@ export class ReleaseNotes extends LitElement {
         top: 8px;
         height: 64px;
       }
-      50%, 100% {
+      50%,
+      100% {
         top: 24px;
         height: 32px;
       }
@@ -101,22 +159,36 @@ export class ReleaseNotes extends LitElement {
     }
 
     .release-note:first-of-type .timeline-decorator::before {
-      background-image: linear-gradient(to bottom, var(--timeline-color-fade-out), var(--timeline-color-primary) var(--release-note-padding-y))
+      background-image: linear-gradient(
+        to bottom,
+        var(--timeline-color-fade-out),
+        var(--timeline-color-primary) var(--release-note-padding-y)
+      );
     }
 
     .release-note:last-of-type .timeline-decorator::before {
-      background-image: linear-gradient(to bottom, var(--timeline-color-primary) calc(100% - var(--release-note-padding-y)), var(--timeline-color-fade-out));
+      background-image: linear-gradient(
+        to bottom,
+        var(--timeline-color-primary) calc(100% - var(--release-note-padding-y)),
+        var(--timeline-color-fade-out)
+      );
     }
 
     .timeline-decorator::before {
-      content: "";
+      content: '';
       width: var(--timeline-width);
       position: absolute;
 
-      background-image: linear-gradient(to bottom, var(--timeline-color-primary), var(--timeline-color-primary));
+      background-image: linear-gradient(
+        to bottom,
+        var(--timeline-color-primary),
+        var(--timeline-color-primary)
+      );
       top: 0;
       bottom: 0;
-      left: calc(var(--version-badge-width) / 2 + var(--release-note-padding-x));
+      left: calc(
+        var(--version-badge-width) / 2 + var(--release-note-padding-x)
+      );
     }
 
     .release-note {
@@ -171,7 +243,9 @@ export class ReleaseNotes extends LitElement {
     .change-log {
       list-style: none;
       line-height: 1.5;
-      margin-left: calc(var(--version-badge-width) + var(--release-note-padding-x));
+      margin-left: calc(
+        var(--version-badge-width) + var(--release-note-padding-x)
+      );
       padding-left: 0px;
     }
 
@@ -204,7 +278,7 @@ export class ReleaseNotes extends LitElement {
     }
 
     .change-badge-removed {
-      background-color: #d73a49
+      background-color: #d73a49;
     }
 
     .change-text {
@@ -233,7 +307,7 @@ export class ReleaseNotes extends LitElement {
   issueBaseUrl = '';
 
   render() {
-    if(!this.data || this.data.length == 0)
+    if (!this.data || this.data.length == 0)
       return html`
         <div class="release-notes-container">
           <div class="loading-indicator">
@@ -251,29 +325,33 @@ export class ReleaseNotes extends LitElement {
     `;
   }
 
-  getSection(release: ReleaseData) : TemplateResult {
+  getSection(release: ReleaseData): TemplateResult {
     return html`
-      <section class="release-note position-relative center-container">
-        <header class="timeline-decorator d-flex flex-items-center">
-          <span class="release-version-badge border-box">${release.version}</span>
-          <div class="release-title">${this.getReleaseHeaderName(release)}</div>
-        </header>
-        <ul class="change-log">
-          ${release.notes.map(note => html`${this.getReleaseNoteElement(note)}`)}
-        </ul>
-      </section>`;
+    <section
+      class="release-note position-relative center-container"
+    >
+      <header class="timeline-decorator d-flex flex-items-center">
+        <span class="release-version-badge border-box">${release.version}</span>
+        <div class="release-title">${this.getReleaseHeaderName(release)}</div>
+      </header>
+      <ul class="change-log">
+        ${release.notes.map(note => html`${this.getReleaseNoteElement(note)}`)}
+      </ul>
+    </section>`;
   }
 
-  getReleaseHeaderName(release: ReleaseData) : string {
+  getReleaseHeaderName(release: ReleaseData): string {
     var result: string = '';
 
-    if(release.pub_date != null && release.pub_date)
+    if (release.pub_date != null && release.pub_date) {
       result += this.dateFormatter(new Date(release.pub_date));
+    }
 
-    if(release.name != null && release.name) {
-      if(release.pub_date != null)
+    if (release.name != null && release.name) {
+      if (release.pub_date != null) {
         result += ' - ';
-      
+      }
+
       result += release.name;
     }
 
@@ -281,12 +359,13 @@ export class ReleaseNotes extends LitElement {
   }
 
   getReleaseNoteElement(note: string) {
-    if(!note)
+    if (!note) {
       return html``;
+    }
 
     var changeText = '';
     var badgeText = '';
-    if(note.indexOf('[') != -1 && note.indexOf(']') != -1) {
+    if (note.indexOf('[') != -1 && note.indexOf(']') != -1) {
       try {
         badgeText = note.substring(note.indexOf('[') + 1, note.indexOf(']'));
         changeText = note.substring(note.indexOf(']') + 1);
@@ -295,39 +374,45 @@ export class ReleaseNotes extends LitElement {
       }
     }
 
-    if(!changeText)
+    if (!changeText) {
       changeText = note;
+    }
 
     changeText = changeText.trim();
 
-    if(!badgeText)
-      badgeText = "Changed";
+    if (!badgeText) {
+      badgeText = 'Changed';
+    }
 
-    //if(this.issueBaseUrl)
-    //  changeText = changeText.replace(/#(\d+)/i, html`<a href="${this.issueBaseUrl}$1">$1</a>`);
-
-    var changePieces : Array<string> = [changeText];
-    if(this.issueBaseUrl)
+    var changePieces: Array<string> = [changeText];
+    if (this.issueBaseUrl) {
       changePieces = changeText.split(/(#\d+)/i);
+    }
 
     return html`
       <li class="change-log-list-entry d-flex">
-        <div class="change-badge ${badgeText ? ("change-badge-" + badgeText.trim().toLocaleLowerCase()) : ""} border-box">
+        <div
+          class="change-badge ${badgeText
+            ? 'change-badge-' + badgeText.trim().toLocaleLowerCase()
+            : ''} border-box"
+        >
           ${badgeText}
         </div>
         <div class="change-text">
           ${changePieces.map(piece => {
             var issuePieces = piece.match(/#(\d+)/i);
-            if(issuePieces)
-              return html`<a class="change-text-link" href="${new URL(issuePieces[1], this.issueBaseUrl).href}">${piece}</a>`;
-            else
-              return piece;
-            })}
+            if (issuePieces)
+              return html`<a
+                class="change-text-link"
+                href="${new URL(issuePieces[1], this.issueBaseUrl).href}"
+                >${piece}</a
+              >`;
+            else return piece;
+          })}
         </div>
       </li>
     `;
   }
-
 }
 
 class ReleaseData {
