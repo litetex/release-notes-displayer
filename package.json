@@ -1,9 +1,9 @@
 {
   "name": "release-notes",
   "version": "0.0.0",
-  "description": "",
-  "main": "release-notes.js",
-  "module": "release-notes.js",
+  "description": "A webcomponent which displays release notes",
+  "main": "dist/release-notes.js",
+  "module": "dist/release-notes.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
