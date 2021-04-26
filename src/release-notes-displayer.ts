@@ -392,14 +392,17 @@ export class ReleaseNotes extends LitElement {
         </div>
         <div class="change-text">
           ${changePieces.map(piece => {
-            var issuePieces = piece.match(/#(\d+)/i);
-            if (issuePieces)
+            var issuePieces = this.issueBaseUrl && piece.match(/#(\d+)/i);
+            if (issuePieces) {
               return html`<a
                 class="change-text-link"
                 href="${new URL(issuePieces[1], this.issueBaseUrl).href}"
                 >${piece}</a
               >`;
-            else return piece;
+            }
+            else {
+              return piece;
+            }
           })}
         </div>
       </li>
