@@ -9,9 +9,6 @@ import {
 
 @customElement('release-notes-displayer')
 export class ReleaseNotes extends LitElement {
-  // Light mode:
-  /* --background-color-primary: #fff; */
-  /* --color-primary: 0,0,0; */
   static styles = css`
     .release-notes-container {
       --background-color-primary: var(
