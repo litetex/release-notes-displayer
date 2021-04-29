@@ -27,15 +27,15 @@ a:visited {
   color: inherit;
 }
 
-header {
+.index-header {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 200px;
+  height: 120px;
   margin: 0;
-  background: linear-gradient(0deg, #1f2328 0%, #5a2780 100%);
+  background: #1f2328;
   color: white;
 }
 
@@ -65,7 +65,7 @@ header h2 {
   margin: 0;
 }
 
-nav {
+nav.page {
   display: grid;
   width: 100%;
   max-width: 100%;

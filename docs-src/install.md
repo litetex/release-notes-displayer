@@ -25,6 +25,6 @@ For this element to work from unpkg.com specifically, you need to include the `?
 ```
 
 ### JavaScript
-```html
+```js
 import {MyElement} from 'https://unpkg.com/release-notes-displayer?module';
 ```

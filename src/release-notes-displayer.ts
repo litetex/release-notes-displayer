@@ -327,7 +327,7 @@ export class ReleaseNotes extends LitElement {
         <div class="release-title">${this.getReleaseHeaderName(release)}</div>
       </header>
       <ul class="change-log">
-        ${release.notes.map(note => html`${this.getReleaseNoteElement(note)}`)}
+        ${release.notes?.map(note => html`${this.getReleaseNoteElement(note)}`)}
       </ul>
     </section>`;
   }
@@ -412,7 +412,7 @@ export class ReleaseNotes extends LitElement {
 
 class ReleaseData {
   name?: string;
-  notes: Array<string> = [];
+  notes?: Array<string> = [];
   pub_date?: string;
   version: string = '';
 }
