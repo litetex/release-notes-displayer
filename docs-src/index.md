@@ -19,9 +19,9 @@ release-notes-displayer {
         "name": "A cool update",
         "notes": [
             "[Improved] 🚀 Display release-notes easily",
-            "[Improved] Customize the component",
+            "[Improved] Customizable component",
             "[Improved] Written in Typescript",
-            "[Improved] Configuration via json",
+            "[Improved] Configuration can be done with json",
             "[Added] Check out the examples, api and more"
         ],
         "version": "2.0.0"
