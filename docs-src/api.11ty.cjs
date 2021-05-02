@@ -75,7 +75,19 @@ const renderTable = (name, properties, data) => {
       </tr>
       ${data.map((i) => `
         <tr>
-          ${properties.map((p) => `<td>${i[p]}</td>`).join('')}
+          ${
+            properties.map((p) => {
+              /*
+              rEpLaCEAlL iS nOt A fUNcTiOn - JavaScript in 2020 (ECMA-262)
+              Meanwhile Java https://docs.oracle.com/javase/7/docs/api/java/lang/String.html#replaceAll(java.lang.String,%20java.lang.String) :
+              Java 1.4 was released in 2002
+
+              Welcome to the real world...
+              */
+              return `<td ${p == "name" ? `id=${name}-${i[p]}`: ""}>${i[p]?.replace(/\\n/gm,'<br>')}</td>`
+            })
+            .join('')
+          }
         </tr>
       `).join('')}
     </table>

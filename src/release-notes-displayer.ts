@@ -7,8 +7,14 @@ import {
   TemplateResult,
 } from 'lit-element';
 
+/**
+ * Displays release notes
+ */
 @customElement('release-notes-displayer')
-export class ReleaseNotes extends LitElement {
+export class ReleaseNotesDisplayer extends LitElement {
+  /**
+   * Styles
+   */
   static styles = css`
     .release-notes-container {
       --background-color-primary: var(
@@ -289,14 +295,61 @@ export class ReleaseNotes extends LitElement {
     }
   `;
 
+  /**
+   * Can be used to turn off shadow DOM; usage not recommended
+   */
+  @property({type: Boolean})
+  disableShadowDOM: boolean = false;
+
+  /**
+   * The data used for displaying
+   */
   @property({type: Array})
   data: Array<ReleaseData> = [];
 
-  @property({type: String})
+  /**
+   * Can be used to i18n the changeTypeBadge
+   * @example you can do something like "New"[en] becomes "Neu"[de]
+   */
+  @property()
+  changeTypeBadgeNameFunc: (name: string) => string = name => name;
+
+  /**
+   * Formats the date
+   */
+  @property()
   dateFormatter: (date: Date) => string = date => date.toLocaleDateString();
 
+  /**
+   * Used for parsing e.g. #3 in the release notes
+   */
+  @property({
+    type: RegExp,
+    converter: (value) => {
+      if(value)
+        return new RegExp(value);
+      
+      return undefined;
+    }
+  })
+  issueMatching?: RegExp = /(#\d+)/i; 
+
+  /**
+   * The url for building issue references
+   * If a matching issue is found in the release notes, e.g #3 it will become a link based on that url (the numer will be appendend)
+   * @example https://localhost/issue 
+   * @see issueLinkGenerator
+   */
   @property({type: String})
   issueBaseUrl = '';
+
+  /**
+   * Another way for building issue references
+   * If a matching issue is found in the release notes, e.g #3 it will become a link based on what the function returns (null results)
+   * @see issueBaseUrl
+   */
+  @property()
+  issueLinkGenerator?: (issueKey: string) => string | null = undefined;
 
   render() {
     if (!this.data || this.data.length == 0)
@@ -315,6 +368,14 @@ export class ReleaseNotes extends LitElement {
         ${this.data.map(release => html`${this.getSection(release)}`)}
       </div>
     `;
+  }
+
+  createRenderRoot() {
+    if(this.disableShadowDOM) {
+      return this;
+    }
+
+    return super.createRenderRoot();
   }
 
   getSection(release: ReleaseData): TemplateResult {
@@ -377,8 +438,10 @@ export class ReleaseNotes extends LitElement {
     }
 
     var changePieces: Array<string> = [changeText];
-    if (this.issueBaseUrl) {
-      changePieces = changeText.split(/(#\d+)/i);
+    var doIssueMatching: boolean = false;
+    if ((this.issueBaseUrl || this.issueLinkGenerator) && this.issueMatching) {
+      doIssueMatching = true;
+      changePieces = changeText.split(this.issueMatching!);
     }
 
     return html`
@@ -388,25 +451,34 @@ export class ReleaseNotes extends LitElement {
             ? 'change-badge-' + badgeText.trim().toLocaleLowerCase()
             : ''} border-box"
         >
-          ${badgeText}
+          ${this.changeTypeBadgeNameFunc(badgeText)}
         </div>
         <div class="change-text">
           ${changePieces.map(piece => {
-            var issuePieces = this.issueBaseUrl && piece.match(/#(\d+)/i);
-            if (issuePieces) {
-              return html`<a
-                class="change-text-link"
-                href="${new URL(issuePieces[1], this.issueBaseUrl).href}"
-                >${piece}</a
-              >`;
+            if(doIssueMatching) {
+              var issuePieces = piece.match(this.issueMatching!);
+              if (issuePieces) {
+                var href: (string | null) = this.issueLinkGenerator ? this.issueLinkGenerator(issuePieces[1]) : new URL(issuePieces[1], this.issueBaseUrl).href;
+
+                if(href) {
+                  return html`<a
+                    class="change-text-link"
+                    href="${href!}"
+                    >${piece}</a
+                  >`;
+                }
+              }
             }
-            else {
-              return piece;
-            }
+
+            return piece;
           })}
         </div>
       </li>
     `;
+  }
+
+  getDefaultIssueMatchingRegex(): RegExp {
+    return /(#\d+)/i;
   }
 }
 
@@ -419,6 +491,6 @@ class ReleaseData {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'release-notes-displayer': ReleaseNotes;
+    'release-notes-displayer': ReleaseNotesDisplayer;
   }
 }

@@ -16,7 +16,7 @@ const renderExample = ({name, content, collections, page}) => {
   return `
     <h1>Example: ${name}</h1>
     <section class="examples">
-      <nav class="collection">
+      <nav class="collection examples">
         <span>
           Click on the links to view the examples:
         </span>
@@ -38,7 +38,6 @@ const renderExample = ({name, content, collections, page}) => {
                   return 0;
                 })
                 .map((post) => `
-                  <script>console.log('${post.data.prio}');</script>
                   <li class=${post.url === page.url ? 'selected' : ''}>
                     <a href="${relative(page.url, post.url)}">${post.data.description.replace('<', '&lt;')}</a>
                   </li>

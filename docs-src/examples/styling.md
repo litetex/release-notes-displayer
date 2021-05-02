@@ -7,6 +7,13 @@ description: Basic Styling
 prio: 2000
 ---
 
+
+Styling can be done with [custom css properties/variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
+
+For all available options take a look at the [API](../../api#Properties-styles).
+
+For extreme cases (not recommended) it's also possible to [disable the ShadowDOM](../../api#Attributes-disableShadowDOM), so all elements can be accessed directly.
+
 <style>
     release-notes-displayer{
         --release-notes-background-color-primary: #fff;

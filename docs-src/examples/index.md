@@ -7,6 +7,8 @@ description: A basic example
 prio: 1
 ---
 
+This is a basic example how to make the component work:
+
 <release-notes-displayer 
     data='[
     {
@@ -45,4 +47,16 @@ prio: 1
         ],
         "version": "1.0.0"
     }]' />
+```
+
+<br>
+
+If no data is set to the component, it looks like this:
+
+<release-notes-displayer></release-notes-displayer>
+
+<h3>HTML</h3>
+
+```html
+<release-notes-displayer></release-notes-displayer>
 ```

@@ -10,7 +10,7 @@ title: <release-notes-displayer> ⌲ Install
 ## Local Installation
 
 ```bash
-npm i release-notes-displayer
+npm i @litetex/release-notes-displayer
 ```
 
 ## CDN
@@ -21,10 +21,10 @@ For this element to work from unpkg.com specifically, you need to include the `?
 
 ### HTML
 ```html
-<script type="module" src="https://unpkg.com/release-notes-displayer?module"></script>
+<script type="module" src="https://unpkg.com/@litetex/release-notes-displayer?module"></script>
 ```
 
 ### JavaScript
 ```js
-import {MyElement} from 'https://unpkg.com/release-notes-displayer?module';
+import {ReleaseNotesDisplayer} from 'https://unpkg.com/@litetex/release-notes-displayer?module';
 ```

@@ -7,6 +7,8 @@ description: Complex
 prio: 9999
 ---
 
+A complex example that combines multiple demos:
+
 <release-notes-displayer id="rn" issueBaseUrl="http://localhost/issue"></release-notes-displayer>
 <script>
   var rn = document.getElementById('rn');

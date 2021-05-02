@@ -6,6 +6,8 @@ name: Using javascript
 description: Using javascript to fill in data
 ---
 
+In the most use-cases you want to fill in the data via JavaScipt (e.g. if it was fetched from some sort of backend-api before):
+
 <release-notes-displayer id="rn"></release-notes-displayer>
 <script>
   var rn = document.getElementById('rn');
