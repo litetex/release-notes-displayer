@@ -43,12 +43,6 @@
     <script>
         var releaseNotes = document.getElementById('release-notes');
         
-
-        setTimeout(() => {
-            console.log('HI');
-            init();
-        }, 1000);
-
         function init() {
             fetch('/dev/release-notes.json')
                 .then(res => res.json())
@@ -56,5 +50,11 @@
                     releaseNotes.data = data;
                 });
         }
+
+        setTimeout(() => {
+            init();
+        }, 1000);
+
+        // init();
     </script>
 </html>

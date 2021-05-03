@@ -41,6 +41,11 @@ export class ReleaseNotesDisplayer extends LitElement {
         'Segoe UI Symbol'
       );
 
+      --justify-content-primary: var(
+        --release-note-justify-conent-primary,
+        center
+      );
+
       --badge-text-color-primary: var(
         --release-notes-badge-text-color-primary,
         rgba(255, 255, 255, 0.75)
@@ -98,6 +103,8 @@ export class ReleaseNotesDisplayer extends LitElement {
 
       font-size: var(--font-size-primary);
       font-family: var(--font-family-primary);
+
+      justify-content: var(--justify-content-primary);
     }
 
     .loading-indicator {
@@ -302,6 +309,12 @@ export class ReleaseNotesDisplayer extends LitElement {
   disableShadowDOM: boolean = false;
 
   /**
+   * Defines if the component should show a little loading animation, when no data is set
+   */
+  @property({type: Boolean})
+  showNoDataSetAnimation: boolean = true;
+
+  /**
    * The data used for displaying
    */
   @property({type: Array})
@@ -352,20 +365,11 @@ export class ReleaseNotesDisplayer extends LitElement {
   issueLinkGenerator?: (issueKey: string) => string | null = undefined;
 
   render() {
-    if (!this.data || this.data.length == 0)
-      return html`
-        <div class="release-notes-container">
-          <div class="loading-indicator">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-      `;
-
     return html`
-      <div class="release-notes-container">
-        ${this.data.map(release => html`${this.getSection(release)}`)}
+      <div class="release-notes-container d-flex">
+        <div class="release-notes-container-inner">
+          ${this.doRenderContent()}
+        </div>
       </div>
     `;
   }
@@ -376,6 +380,22 @@ export class ReleaseNotesDisplayer extends LitElement {
     }
 
     return super.createRenderRoot();
+  }
+
+  doRenderContent() : TemplateResult {
+    if (!this.data || this.data.length == 0) {
+      if(this.showNoDataSetAnimation) {
+        return html`
+          <div class="loading-indicator">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        `;
+      }
+    }
+
+    return html`${this.data.map(release => html`${this.getSection(release)}`)}`;
   }
 
   getSection(release: ReleaseData): TemplateResult {

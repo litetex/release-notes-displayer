@@ -1,9 +1,9 @@
 ---
 layout: example.11ty.cjs
-title: <release-notes-displayer> ⌲ Examples ⌲ Basic Styling
+title: <release-notes-displayer> ⌲ Examples ⌲ Styling
 tags: example
-name: Basic Styling
-description: Basic Styling
+name: Styling
+description: Styling
 prio: 2000
 ---
 
@@ -16,7 +16,7 @@ For extreme cases (not recommended) it's also possible to [disable the ShadowDOM
 
 <style>
     release-notes-displayer{
-        --release-notes-background-color-primary: #fff;
+        --release-notes-background-color-primary: #eee;
         --release-notes-color-primary: 0,0,0;
     }
 </style>
