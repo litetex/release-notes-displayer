@@ -42,7 +42,7 @@ export class ReleaseNotesDisplayer extends LitElement {
       );
 
       --justify-content-primary: var(
-        --release-note-justify-conent-primary,
+        --release-notes-justify-conent-primary,
         center
       );
 
@@ -146,21 +146,12 @@ export class ReleaseNotesDisplayer extends LitElement {
       }
     }
 
-    .center-container {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
     .position-relative {
       position: relative;
     }
 
     .d-flex {
       display: flex;
-    }
-
-    .flex-items-center {
-      align-items: center;
     }
 
     .release-note:first-of-type .timeline-decorator::before {
@@ -218,15 +209,15 @@ export class ReleaseNotesDisplayer extends LitElement {
     .release-version-badge {
       color: var(--badge-text-color-primary);
 
-      width: var(--version-badge-width);
+      min-width: var(--version-badge-width);
       text-align: center;
       background-color: var(--version-badge-background-color);
+      align-self: flex-start;
 
       z-index: 1;
 
       font-weight: 600;
       font-size: var(--version-badge-font-size);
-      display: inline-block;
       border-radius: 3px;
 
       padding: 4px;
@@ -238,8 +229,6 @@ export class ReleaseNotesDisplayer extends LitElement {
       display: inline-block;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
-      vertical-align: top;
 
       font-weight: 300;
       font-size: var(--header-title-font-size);
@@ -261,8 +250,7 @@ export class ReleaseNotesDisplayer extends LitElement {
     .change-badge {
       color: var(--badge-text-color-primary);
       background-color: #0366d6;
-      display: inline;
-      flex: 0 0 calc(var(--font-size-primary) * 4.5 + 5px);
+      min-width: calc(var(--font-size-primary) * 4.5 + 5px);
       font-size: var(--change-badge-font-size);
       font-weight: 600;
       border-radius: 3px;
@@ -401,9 +389,9 @@ export class ReleaseNotesDisplayer extends LitElement {
   getSection(release: ReleaseData): TemplateResult {
     return html`
     <section
-      class="release-note position-relative center-container"
+      class="release-note position-relative"
     >
-      <header class="timeline-decorator d-flex flex-items-center">
+      <header class="timeline-decorator d-flex">
         <span class="release-version-badge border-box">${release.version}</span>
         <div class="release-title">${this.getReleaseHeaderName(release)}</div>
       </header>
