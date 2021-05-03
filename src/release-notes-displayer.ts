@@ -277,6 +277,8 @@ export class ReleaseNotesDisplayer extends LitElement {
     .change-text {
       color: var(--text-color-primary);
       font-size: var(--change-text-font-size);
+
+      overflow-wrap: anywhere;
     }
 
     a.change-text-link {
