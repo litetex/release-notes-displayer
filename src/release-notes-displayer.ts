@@ -328,19 +328,18 @@ export class ReleaseNotesDisplayer extends LitElement {
    */
   @property({
     type: RegExp,
-    converter: (value) => {
-      if(value)
-        return new RegExp(value);
-      
+    converter: value => {
+      if (value) return new RegExp(value);
+
       return undefined;
-    }
+    },
   })
-  issueMatching?: RegExp = /(#\d+)/i; 
+  issueMatching?: RegExp = /(#\d+)/i;
 
   /**
    * The url for building issue references
    * If a matching issue is found in the release notes, e.g #3 it will become a link based on that url (the numer will be appendend)
-   * @example https://localhost/issue 
+   * @example https://localhost/issue
    * @see issueLinkGenerator
    */
   @property({type: String})
@@ -365,16 +364,16 @@ export class ReleaseNotesDisplayer extends LitElement {
   }
 
   createRenderRoot() {
-    if(this.disableShadowDOM) {
+    if (this.disableShadowDOM) {
       return this;
     }
 
     return super.createRenderRoot();
   }
 
-  doRenderContent() : TemplateResult {
+  doRenderContent(): TemplateResult {
     if (!this.data || this.data.length == 0) {
-      if(this.showNoDataSetAnimation) {
+      if (this.showNoDataSetAnimation) {
         return html`
           <div class="loading-indicator">
             <div></div>
@@ -389,10 +388,7 @@ export class ReleaseNotesDisplayer extends LitElement {
   }
 
   getSection(release: ReleaseData): TemplateResult {
-    return html`
-    <section
-      class="release-note position-relative"
-    >
+    return html` <section class="release-note position-relative">
       <header class="timeline-decorator d-flex">
         <span class="release-version-badge border-box">${release.version}</span>
         <div class="release-title">${this.getReleaseHeaderName(release)}</div>
@@ -465,15 +461,15 @@ export class ReleaseNotesDisplayer extends LitElement {
         </div>
         <div class="change-text">
           ${changePieces.map(piece => {
-            if(doIssueMatching) {
+            if (doIssueMatching) {
               var issuePieces = piece.match(this.issueMatching!);
               if (issuePieces) {
-                var href: (string | null) = this.issueLinkGenerator ? this.issueLinkGenerator(issuePieces[1]) : new URL(issuePieces[1], this.issueBaseUrl).href;
+                var href: string | null = this.issueLinkGenerator
+                  ? this.issueLinkGenerator(issuePieces[1])
+                  : new URL(issuePieces[1], this.issueBaseUrl).href;
 
-                if(href) {
-                  return html`<a
-                    class="change-text-link"
-                    href="${href!}"
+                if (href) {
+                  return html`<a class="change-text-link" href="${href!}"
                     >${piece}</a
                   >`;
                 }
