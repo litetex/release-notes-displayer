@@ -1,5 +1,25 @@
 TODO
 
+# [&lt;release-notes-displayer>](https://litetex.github.io/release-notes-displayer)  ![npm (scoped)](https://img.shields.io/npm/v/@litetex/release-notes-displayer)
+⚠ The project is in an experimental stage and not stable ⚠
+
+A webcomponent to display release notes
+
+
+TODO: Better demo picture
+![release-notes-displayer example screenshot](assets/demo.png)
+
+## Installing / Usage [![Docs online](https://img.shields.io/badge/docs-online-success?logo=read-the-docs&logoColor=eee)](https://litetex.github.io/release-notes-displayer)
+``
+``
+
+## Developing
+## Building
+
+
+----
+Based on https://github.com/PolymerLabs/lit-element-starter-ts
+
 # LitElement TypeScript starter 
 
 This project includes a sample component using LitElement with TypeScript.
