@@ -28,6 +28,7 @@
     "docs:assets": "ncp node_modules/prismjs/themes/prism-okaidia.css docs-gen/prism-okaidia.css",
     "docs:serve": "web-dev-server --root-dir=docs-gen --node-resolve --watch",
     "format": "prettier src/* --write",
+    "format:check": "prettier src/* --check",
     "lint": "npm run lint:eslint",
     "lint:eslint": "eslint 'src/**/*.ts'",
     "serve": "web-dev-server --app-index dev/index.html --node-resolve --watch",
