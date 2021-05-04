@@ -347,7 +347,7 @@ export class ReleaseNotesDisplayer extends LitElement {
 
   /**
    * Another way for building issue references
-   * If a matching issue is found in the release notes, e.g #3 it will become a link based on what the function returns (null results)
+   * If a matching issue is found in the release notes, e.g #3 it will become a link based on what the function returns (null results in no link)
    * @see issueBaseUrl
    */
   @property()
