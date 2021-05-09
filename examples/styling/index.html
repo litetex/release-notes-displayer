@@ -1,0 +1,96 @@
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><release-notes-displayer> ⌲ Examples ⌲ Styling</title>
+    <link rel="stylesheet" href="../../docs.css">
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+    <script type="module" src="../../release-notes-displayer.bundled.js"></script>
+  </head>
+  <body>
+    
+<nav class="page">
+  <a href="../../">Home</a>
+  <a href="../">Examples</a>
+  <a href="../../api/">API</a>
+  <a href="../../install/">Install</a>
+</nav>
+    <div id="main-wrapper">
+      <main>
+        
+    <h1>Example: Styling</h1>
+    <section class="examples">
+      <nav class="collection examples">
+        <span>
+          Click on the links to view the examples:
+        </span>
+        <ul>
+          
+                  <li class=>
+                    <a href="../">A basic example</a>
+                  </li>
+                
+                  <li class=>
+                    <a href="../i18n-customization/">Internationalization</a>
+                  </li>
+                
+                  <li class=>
+                    <a href="../issue-link/">Issue links</a>
+                  </li>
+                
+                  <li class=>
+                    <a href="../using-javascript/">Using javascript to fill in data</a>
+                  </li>
+                
+                  <li class=selected>
+                    <a href="">Styling</a>
+                  </li>
+                
+                  <li class=>
+                    <a href="../complex/">Complex</a>
+                  </li>
+                
+        </ul>
+      </nav>
+      <div>
+        <p>Styling can be done with <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">custom css properties/variables</a>.</p>
+<p>For all available options take a look at the <a href="../../api#Properties-styles">API</a>.</p>
+<p>For extreme cases (not recommended) it's also possible to <a href="../../api#Attributes-disableShadowDOM">disable the ShadowDOM</a>, so all elements can be accessed directly.</p>
+<style>
+    release-notes-displayer{
+        --release-notes-background-color-primary: #eee;
+        --release-notes-color-primary: 0,0,0;
+    }
+</style>
+<p><release-notes-displayer 
+    data='[
+    {
+        "notes": [
+            "[Changed] Something changed"
+        ],
+        "version": "1.0.1"
+    },
+    {
+        "notes": [
+            "[Added] Added something",
+            "[Fixed] Fixed something",
+            "[Improved] Improved something",
+            "[Removed] Removed something"
+        ],
+        "version": "1.0.0"
+    }]' /></p>
+<h3>CSS</h3>
+<pre class="language-css"><code class="language-css"><span class="token comment">/* Applying light mode */</span><br><span class="token selector">release-notes-displayer</span><span class="token punctuation">{</span><br>    <span class="token property">--release-notes-background-color-primary</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span><br>    <span class="token property">--release-notes-color-primary</span><span class="token punctuation">:</span> 0<span class="token punctuation">,</span>0<span class="token punctuation">,</span>0<span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<h3>HTML</h3>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>release-notes-displayer</span> <br>    <span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>[<br>    {<br>        <span class="token punctuation">"</span>notes<span class="token punctuation">"</span>: [<br>            <span class="token punctuation">"</span>[Changed] Something changed<span class="token punctuation">"</span><br>        ],<br>        <span class="token punctuation">"</span>version<span class="token punctuation">"</span>: <span class="token punctuation">"</span>1.0.1<span class="token punctuation">"</span><br>    },<br>    {<br>        <span class="token punctuation">"</span>notes<span class="token punctuation">"</span>: [<br>            <span class="token punctuation">"</span>[Added] Added something<span class="token punctuation">"</span>,<br>            <span class="token punctuation">"</span>[Fixed] Fixed something<span class="token punctuation">"</span>,<br>            <span class="token punctuation">"</span>[Improved] Improved something<span class="token punctuation">"</span>,<br>            <span class="token punctuation">"</span>[Removed] Removed something<span class="token punctuation">"</span><br>        ],<br>        <span class="token punctuation">"</span>version<span class="token punctuation">"</span>: <span class="token punctuation">"</span>1.0.0<span class="token punctuation">"</span><br>    }]<span class="token punctuation">'</span></span> <span class="token punctuation">/></span></span></code></pre>
+
+      </div>
+    </section>
+  
+      </main>
+    </div>
+  </body>
+</html>

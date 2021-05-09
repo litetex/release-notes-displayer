@@ -1,0 +1,124 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "release-notes-displayer",
+      "path": "./../src/release-notes-displayer.ts",
+      "description": "Displays release notes",
+      "attributes": [
+        {
+          "name": "disableShadowDOM",
+          "description": "Can be used to turn off shadow DOM; usage not recommended",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "showNoDataSetAnimation",
+          "description": "Defines if the component should show a little loading animation, when no data is set",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "data",
+          "description": "The data used for displaying",
+          "type": "ReleaseData[]",
+          "default": "[]"
+        },
+        {
+          "name": "changeTypeBadgeNameFunc",
+          "description": "Can be used to i18n the changeTypeBadge",
+          "type": "(name: string) => string",
+          "default": "\"name => name\""
+        },
+        {
+          "name": "dateFormatter",
+          "description": "Formats the date",
+          "type": "(date: Date) => string",
+          "default": "\"date => date.toLocaleDateString()\""
+        },
+        {
+          "name": "issueMatching",
+          "description": "Used for parsing e.g. #3 in the release notes",
+          "type": "RegExp | undefined",
+          "default": "\"/(#\\\\d+)/i\""
+        },
+        {
+          "name": "issueBaseUrl",
+          "description": "The url for building issue references\nIf a matching issue is found in the release notes, e.g #3 it will become a link based on that url (the numer will be appendend)",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "issueLinkGenerator",
+          "description": "Another way for building issue references\nIf a matching issue is found in the release notes, e.g #3 it will become a link based on what the function returns (null results in no link)",
+          "type": "((issueKey: string) => string | null) | undefined",
+          "default": "\"undefined\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "styles",
+          "description": "Styles",
+          "type": "CSSResult",
+          "default": "\"css`\\n    .release-notes-container {\\n      --background-color-primary: var(\\n        --release-notes-background-color-primary,\\n        #24292e\\n      );\\n      --color-primary: var(--release-notes-color-primary, 255, 255, 255);\\n\\n      --text-color-primary: var(\\n        --release-notes-text-color-primary,\\n        rgba(var(--color-primary), 0.75)\\n      );\\n      --font-size-primary: var(--release-notes-font-size-primary, 14px);\\n      --font-family-primary: var(\\n        --release-notes-font-family-primary,\\n        -apple-system,\\n        BlinkMacSystemFont,\\n        'Segoe UI',\\n        Helvetica,\\n        'Apple Color Emoji',\\n        Arial,\\n        sans-serif,\\n        'Segoe UI Emoji',\\n        'Segoe UI Symbol'\\n      );\\n\\n      --justify-content-primary: var(\\n        --release-notes-justify-conent-primary,\\n        center\\n      );\\n\\n      --badge-text-color-primary: var(\\n        --release-notes-badge-text-color-primary,\\n        rgba(255, 255, 255, 0.75)\\n      );\\n\\n      --version-badge-font-size: var(\\n        --release-notes-version-badge-font-size,\\n        calc(var(--font-size-primary) * 0.95)\\n      );\\n      --version-badge-background-color: var(\\n        --release-notes-version-badge-background-color,\\n        #6f42c1\\n      );\\n      --version-badge-width: var(--release-notes-version-badge-width, 65px);\\n\\n      --header-title-font-size: var(\\n        --release-notes-header-title-font-size,\\n        calc(var(--font-size-primary) * 1.5)\\n      );\\n\\n      --timeline-width: var(--release-notes-timeline-width, 3px);\\n      --timeline-color-primary: var(\\n        --release-notes-timeline-color-primary,\\n        rgba(var(--color-primary), 0.1)\\n      );\\n      --timeline-color-fade-out: var(\\n        --release-notes-timeline-color-fade-out,\\n        rgba(var(--color-primary), 0)\\n      );\\n\\n      --release-note-padding-y: var(\\n        --release-notes-release-note-padding-y,\\n        20px\\n      );\\n      --release-note-padding-x: var(\\n        --release-notes-release-note-padding-x,\\n        16px\\n      );\\n\\n      --change-badge-font-size: var(\\n        --release-notes-change-badge-font-size,\\n        calc(var(--font-size-primary) * 0.7)\\n      );\\n      --change-text-font-size: var(\\n        --release-notes-change-text-font-size,\\n        var(--font-size-primary)\\n      );\\n      --change-text-link-color: var(\\n        --release-notes-change-text-link-color,\\n        #9f7be1\\n      );\\n\\n      color: var(--text-color-primary);\\n      background-color: var(--background-color-primary);\\n\\n      font-size: var(--font-size-primary);\\n      font-family: var(--font-family-primary);\\n\\n      justify-content: var(--justify-content-primary);\\n    }\\n\\n    .loading-indicator {\\n      display: inline-block;\\n      position: relative;\\n      width: 80px;\\n      height: 80px;\\n      background-color: var(--background-color-primary);\\n    }\\n    .loading-indicator div {\\n      display: inline-block;\\n      position: absolute;\\n      left: 8px;\\n      width: 16px;\\n      background: var(--text-color-primary);\\n      animation: loading-indicator 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;\\n    }\\n    .loading-indicator div:nth-child(1) {\\n      left: 8px;\\n      animation-delay: -0.24s;\\n    }\\n    .loading-indicator div:nth-child(2) {\\n      left: 32px;\\n      animation-delay: -0.12s;\\n    }\\n    .loading-indicator div:nth-child(3) {\\n      left: 56px;\\n      animation-delay: 0;\\n    }\\n    @keyframes loading-indicator {\\n      0% {\\n        top: 8px;\\n        height: 64px;\\n      }\\n      50%,\\n      100% {\\n        top: 24px;\\n        height: 32px;\\n      }\\n    }\\n\\n    .position-relative {\\n      position: relative;\\n    }\\n\\n    .d-flex {\\n      display: flex;\\n    }\\n\\n    .release-note:first-of-type .timeline-decorator::before {\\n      background-image: linear-gradient(\\n        to bottom,\\n        var(--timeline-color-fade-out),\\n        var(--timeline-color-primary) var(--release-note-padding-y)\\n      );\\n    }\\n\\n    .release-note:last-of-type .timeline-decorator::before {\\n      background-image: linear-gradient(\\n        to bottom,\\n        var(--timeline-color-primary) calc(100% - var(--release-note-padding-y)),\\n        var(--timeline-color-fade-out)\\n      );\\n    }\\n\\n    .timeline-decorator::before {\\n      content: '';\\n      width: var(--timeline-width);\\n      position: absolute;\\n\\n      background-image: linear-gradient(\\n        to bottom,\\n        var(--timeline-color-primary),\\n        var(--timeline-color-primary)\\n      );\\n      top: 0;\\n      bottom: 0;\\n      left: calc(\\n        var(--version-badge-width) / 2 + var(--release-note-padding-x)\\n      );\\n    }\\n\\n    .release-note {\\n      display: block;\\n\\n      color: var(--badge-text-color-primary);\\n\\n      padding-top: var(--release-note-padding-y);\\n      padding-bottom: var(--release-note-padding-y);\\n      padding-left: var(--release-note-padding-x);\\n      padding-right: var(--release-note-padding-x);\\n    }\\n\\n    .list-style-none {\\n      list-style: none;\\n    }\\n\\n    .border-box {\\n      box-sizing: border-box;\\n    }\\n\\n    .release-version-badge {\\n      color: var(--badge-text-color-primary);\\n\\n      min-width: var(--version-badge-width);\\n      text-align: center;\\n      background-color: var(--version-badge-background-color);\\n      align-self: flex-start;\\n\\n      z-index: 1;\\n\\n      font-weight: 600;\\n      font-size: var(--version-badge-font-size);\\n      border-radius: 3px;\\n\\n      padding: 4px;\\n      margin-right: 8px;\\n    }\\n\\n    .release-title {\\n      color: var(--text-color-primary);\\n      display: inline-block;\\n      overflow: hidden;\\n      text-overflow: ellipsis;\\n\\n      font-weight: 300;\\n      font-size: var(--header-title-font-size);\\n    }\\n\\n    .change-log {\\n      list-style: none;\\n      line-height: 1.5;\\n      margin-left: calc(\\n        var(--version-badge-width) + var(--release-note-padding-x)\\n      );\\n      padding-left: 0px;\\n    }\\n\\n    .change-log-list-entry {\\n      align-items: flex-start;\\n    }\\n\\n    .change-badge {\\n      color: var(--badge-text-color-primary);\\n      background-color: #0366d6;\\n      min-width: calc(var(--font-size-primary) * 4.5 + 5px);\\n      font-size: var(--change-badge-font-size);\\n      font-weight: 600;\\n      border-radius: 3px;\\n      margin-right: 8px;\\n      padding: 2px 5px;\\n      text-transform: uppercase;\\n      text-align: center;\\n    }\\n\\n    .change-badge-added,\\n    .change-badge-new {\\n      background-color: #28a745;\\n    }\\n\\n    .change-badge-improved,\\n    .change-badge-fixed {\\n      background-color: #0366d6;\\n    }\\n\\n    .change-badge-removed {\\n      background-color: #d73a49;\\n    }\\n\\n    .change-text {\\n      color: var(--text-color-primary);\\n      font-size: var(--change-text-font-size);\\n\\n      overflow-wrap: anywhere;\\n    }\\n\\n    a.change-text-link {\\n      text-decoration: none;\\n      color: var(--change-text-link-color);\\n    }\\n\\n    a.change-text-link:hover {\\n      text-decoration: underline;\\n      color: var(--change-text-link-color);\\n    }\\n  `\""
+        },
+        {
+          "name": "disableShadowDOM",
+          "attribute": "disableShadowDOM",
+          "description": "Can be used to turn off shadow DOM; usage not recommended",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "showNoDataSetAnimation",
+          "attribute": "showNoDataSetAnimation",
+          "description": "Defines if the component should show a little loading animation, when no data is set",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "data",
+          "attribute": "data",
+          "description": "The data used for displaying",
+          "type": "ReleaseData[]",
+          "default": "[]"
+        },
+        {
+          "name": "changeTypeBadgeNameFunc",
+          "attribute": "changeTypeBadgeNameFunc",
+          "description": "Can be used to i18n the changeTypeBadge",
+          "type": "(name: string) => string",
+          "default": "\"name => name\""
+        },
+        {
+          "name": "dateFormatter",
+          "attribute": "dateFormatter",
+          "description": "Formats the date",
+          "type": "(date: Date) => string",
+          "default": "\"date => date.toLocaleDateString()\""
+        },
+        {
+          "name": "issueMatching",
+          "attribute": "issueMatching",
+          "description": "Used for parsing e.g. #3 in the release notes",
+          "type": "RegExp | undefined",
+          "default": "\"/(#\\\\d+)/i\""
+        },
+        {
+          "name": "issueBaseUrl",
+          "attribute": "issueBaseUrl",
+          "description": "The url for building issue references\nIf a matching issue is found in the release notes, e.g #3 it will become a link based on that url (the numer will be appendend)",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "issueLinkGenerator",
+          "attribute": "issueLinkGenerator",
+          "description": "Another way for building issue references\nIf a matching issue is found in the release notes, e.g #3 it will become a link based on what the function returns (null results in no link)",
+          "type": "((issueKey: string) => string | null) | undefined",
+          "default": "\"undefined\""
+        }
+      ]
+    }
+  ]
+}

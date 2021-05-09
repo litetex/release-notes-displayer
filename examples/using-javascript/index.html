@@ -1,0 +1,91 @@
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><release-notes-displayer> ⌲ Examples ⌲ Using JavaScript</title>
+    <link rel="stylesheet" href="../../docs.css">
+    <link href="../../prism-okaidia.css" rel="stylesheet" />
+    <script type="module" src="../../release-notes-displayer.bundled.js"></script>
+  </head>
+  <body>
+    
+<nav class="page">
+  <a href="../../">Home</a>
+  <a href="../">Examples</a>
+  <a href="../../api/">API</a>
+  <a href="../../install/">Install</a>
+</nav>
+    <div id="main-wrapper">
+      <main>
+        
+    <h1>Example: Using javascript</h1>
+    <section class="examples">
+      <nav class="collection examples">
+        <span>
+          Click on the links to view the examples:
+        </span>
+        <ul>
+          
+                  <li class=>
+                    <a href="../">A basic example</a>
+                  </li>
+                
+                  <li class=>
+                    <a href="../i18n-customization/">Internationalization</a>
+                  </li>
+                
+                  <li class=>
+                    <a href="../issue-link/">Issue links</a>
+                  </li>
+                
+                  <li class=selected>
+                    <a href="">Using javascript to fill in data</a>
+                  </li>
+                
+                  <li class=>
+                    <a href="../styling/">Styling</a>
+                  </li>
+                
+                  <li class=>
+                    <a href="../complex/">Complex</a>
+                  </li>
+                
+        </ul>
+      </nav>
+      <div>
+        <p>In the most use-cases you want to fill in the data via JavaScipt (e.g. if it was fetched from some sort of backend-api before):</p>
+<p><release-notes-displayer id="rn"></release-notes-displayer></p>
+<script>
+  var rn = document.getElementById('rn');
+  rn.data = JSON.parse(`[
+    {
+        "notes": [
+            "[Changed] Something changed"
+        ],
+        "version": "1.0.1"
+    },
+    {
+        "notes": [
+            "[Added] Added something",
+            "[Fixed] Fixed something",
+            "[Improved] Improved something",
+            "[Removed] Removed something"
+        ],
+        "version": "1.0.0"
+    }]`);
+</script>
+<h3>HTML</h3>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>release-notes-displayer</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>rn<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
+<h3>JS</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">let</span> rn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'rn'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>rn<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">[<br>{<br>    "notes": [<br>        "[Changed] Something changed"<br>    ],<br>    "version": "1.0.1"<br>},<br>{<br>    "notes": [<br>        "[Added] Added something",<br>        "[Fixed] Fixed something",<br>        "[Improved] Improved something",<br>        "[Removed] Removed something"<br>    ],<br>    "version": "1.0.0"<br>}]</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+      </div>
+    </section>
+  
+      </main>
+    </div>
+  </body>
+</html>
