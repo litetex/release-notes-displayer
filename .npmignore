@@ -1,0 +1,13 @@
+# See https://npm.github.io/publishing-pkgs-docs/publishing/the-npmignore-file.html
+
+# Ignore everything by default
+*
+# Include src folder
+!src/
+# Include dist folder
+!dist/
+
+# Automatically included and relevant for this repo are:
+# package.json
+# README.md
+# LICENSE
