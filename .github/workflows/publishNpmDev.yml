@@ -15,7 +15,7 @@ jobs:
       with:
         node-version: 14.x
         
-    - run: npm ci
+    - run: npm i
     - run: npm run build:dist
     - run: npm publish --tag dev --access public
       env:
