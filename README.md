@@ -11,8 +11,8 @@ A webcomponent which displays release notes
 npm i @litetex/release-notes-displayer
 ``
 
-### Developing
-### Building
+### Developing 
+### Building [![Build Develop](https://img.shields.io/github/workflow/status/litetex/release-notes-displayer/Check%20Build/develop?label=build%20develop)](https://github.com/litetex/release-notes-displayer/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
 
 
 ----
