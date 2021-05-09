@@ -3,9 +3,9 @@
 # Ignore everything by default
 *
 # Include src folder
-!src/
+!/src/**
 # Include dist folder
-!dist/
+!/dist/**
 
 # Automatically included and relevant for this repo are:
 # package.json
