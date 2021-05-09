@@ -1,4 +1,4 @@
-# [&lt;release-notes-displayer>](https://litetex.github.io/release-notes-displayer)  ![npm (scoped)](https://img.shields.io/npm/v/@litetex/release-notes-displayer)
+# [&lt;release-notes-displayer>](https://litetex.github.io/release-notes-displayer) [![npm (scoped)](https://img.shields.io/npm/v/@litetex/release-notes-displayer)](https://www.npmjs.com/package/@litetex/release-notes-displayer)
 ⚠ The project is in an experimental stage and not stable ⚠
 
 A webcomponent to display release notes
