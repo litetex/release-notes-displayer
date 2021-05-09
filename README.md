@@ -1,8 +1,8 @@
-# [&lt;release-notes-displayer>](https://litetex.github.io/release-notes-displayer) [![npm (scoped)](https://img.shields.io/npm/v/@litetex/release-notes-displayer)](https://www.npmjs.com/package/@litetex/release-notes-displayer)
 ⚠ The project is in an experimental stage and not stable ⚠
 
-A webcomponent to display release notes
+# [&lt;release-notes-displayer>](https://litetex.github.io/release-notes-displayer) [![npm (scoped)](https://img.shields.io/npm/v/@litetex/release-notes-displayer)](https://www.npmjs.com/package/@litetex/release-notes-displayer)
 
+A webcomponent which displays release notes
 ![release-notes-displayer example screenshot](assets/demo.png)
 
 ### Installing / Usage [![Docs online](https://img.shields.io/badge/docs-online-success?logo=read-the-docs&logoColor=eee)](https://litetex.github.io/release-notes-displayer)
