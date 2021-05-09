@@ -5,16 +5,14 @@ TODO
 
 A webcomponent to display release notes
 
-
-TODO: Better demo picture
 ![release-notes-displayer example screenshot](assets/demo.png)
 
 ## Installing / Usage [![Docs online](https://img.shields.io/badge/docs-online-success?logo=read-the-docs&logoColor=eee)](https://litetex.github.io/release-notes-displayer)
 ``
 ``
 
-## Developing
-## Building
+### Developing
+### Building
 
 
 ----
