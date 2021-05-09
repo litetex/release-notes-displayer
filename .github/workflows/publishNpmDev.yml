@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +16,7 @@ jobs:
         node-version: 14.x
         
     - run: npm ci
-    - run: npm run build
+    - run: npm run build:dist
     - run: npm publish --tag dev --access public
       env:
         NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
