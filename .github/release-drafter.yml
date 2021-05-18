@@ -1,0 +1,21 @@
+branches:
+  - master
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+version-resolver:
+  major:
+    labels:
+      - 'major'
+  minor:
+    labels:
+      - 'minor'
+  patch:
+    labels:
+      - 'patch'
+  default: patch
+template: |
+  [![https://www.npmjs.com/package/@litetex/release-notes-displayer/v/$RESOLVED_VERSION](https://img.shields.io/badge/npm-$RESOLVED_VERSION-informational)](https://www.npmjs.com/package/@litetex/release-notes-displayer/v/$RESOLVED_VERSION)
+  
+  ## Changes
+  
+  $CHANGES
