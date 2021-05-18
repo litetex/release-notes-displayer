@@ -7,7 +7,7 @@ A webcomponent which displays release notes
 
 Inspired by [GitHub desktop's release notes](https://desktop.github.com/release-notes/)
 
-### Installing / Usage [![Docs online](https://img.shields.io/badge/docs-online-success?logo=read-the-docs&logoColor=eee)](https://litetex.github.io/release-notes-displayer)
+### [Installing](https://litetex.github.io/release-notes-displayer/install) / [Usage](https://litetex.github.io/release-notes-displayer/examples) [![Docs online](https://img.shields.io/badge/docs-online-success?logo=read-the-docs&logoColor=eee)](https://litetex.github.io/release-notes-displayer)
 
 Install it using ``npm i @litetex/release-notes-displayer``
 
