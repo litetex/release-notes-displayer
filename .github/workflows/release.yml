@@ -47,3 +47,16 @@ jobs:
     - name: Git Push
       run: |
         git push origin
+
+  after_release:
+    runs-on: ubuntu-latest
+    needs: [publish]
+
+    steps:
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        destination_branch: "develop"
+        pr_title: "Sync back after release"
+        pr_body: "An automated PR to sync changes back"
