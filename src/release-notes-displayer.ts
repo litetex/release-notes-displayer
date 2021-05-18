@@ -296,7 +296,7 @@ export class ReleaseNotesDisplayer extends LitElement {
    * Can be used to turn off shadow DOM; usage not recommended
    */
   @property({type: Boolean})
-  disableShadowDOM: boolean = false;
+  disableShadowDOM = false;
 
   /**
    * Defines if the component should show a little loading animation, when no data is set
