@@ -30,7 +30,11 @@ jobs:
     - run: npm i
     - run: npm run build
     - run: npm run format:check
+    - run: npm run lint
+
     - run: npm test
+
+    - run: npm run docs
     
     - name: Check for uncommited changes
       run: |
@@ -46,6 +50,6 @@ jobs:
           echo ----------------------------------------
           echo Troubleshooting
           echo ----------------------------------------
-          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && mvn -B clean package -Pproduction"
+          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && npm run build && npm run format && npm run docs"
           exit 1
         fi
