@@ -353,7 +353,7 @@ export class ReleaseNotesDisplayer extends LitElement {
   @property()
   issueLinkGenerator?: (issueKey: string) => string | null = undefined;
 
-  render() : TemplateResult {
+  render(): TemplateResult {
     return html`
       <div class="release-notes-container d-flex">
         <div class="release-notes-container-inner">
@@ -363,7 +363,7 @@ export class ReleaseNotesDisplayer extends LitElement {
     `;
   }
 
-  createRenderRoot() : Element | ShadowRoot {
+  createRenderRoot(): Element | ShadowRoot {
     if (this.disableShadowDOM) {
       return this;
     }
@@ -417,7 +417,7 @@ export class ReleaseNotesDisplayer extends LitElement {
     return result;
   }
 
-  getReleaseNoteElement(note: string) : TemplateResult {
+  getReleaseNoteElement(note: string): TemplateResult {
     if (!note) {
       return html``;
     }
