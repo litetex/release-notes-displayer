@@ -302,7 +302,7 @@ export class ReleaseNotesDisplayer extends LitElement {
    * Defines if the component should show a little loading animation, when no data is set
    */
   @property({type: Boolean})
-  showNoDataSetAnimation: boolean = true;
+  showNoDataSetAnimation = true;
 
   /**
    * The data used for displaying
@@ -353,7 +353,7 @@ export class ReleaseNotesDisplayer extends LitElement {
   @property()
   issueLinkGenerator?: (issueKey: string) => string | null = undefined;
 
-  render() {
+  render() : TemplateResult {
     return html`
       <div class="release-notes-container d-flex">
         <div class="release-notes-container-inner">
@@ -363,7 +363,7 @@ export class ReleaseNotesDisplayer extends LitElement {
     `;
   }
 
-  createRenderRoot() {
+  createRenderRoot() : Element | ShadowRoot {
     if (this.disableShadowDOM) {
       return this;
     }
@@ -400,7 +400,7 @@ export class ReleaseNotesDisplayer extends LitElement {
   }
 
   getReleaseHeaderName(release: ReleaseData): string {
-    var result: string = '';
+    let result = '';
 
     if (release.pub_date != null && release.pub_date) {
       result += this.dateFormatter(new Date(release.pub_date));
@@ -417,13 +417,13 @@ export class ReleaseNotesDisplayer extends LitElement {
     return result;
   }
 
-  getReleaseNoteElement(note: string) {
+  getReleaseNoteElement(note: string) : TemplateResult {
     if (!note) {
       return html``;
     }
 
-    var changeText = '';
-    var badgeText = '';
+    let changeText = '';
+    let badgeText = '';
     if (note.indexOf('[') != -1 && note.indexOf(']') != -1) {
       try {
         badgeText = note.substring(note.indexOf('[') + 1, note.indexOf(']'));
@@ -443,8 +443,8 @@ export class ReleaseNotesDisplayer extends LitElement {
       badgeText = 'Changed';
     }
 
-    var changePieces: Array<string> = [changeText];
-    var doIssueMatching: boolean = false;
+    let changePieces: Array<string> = [changeText];
+    let doIssueMatching = false;
     if ((this.issueBaseUrl || this.issueLinkGenerator) && this.issueMatching) {
       doIssueMatching = true;
       changePieces = changeText.split(this.issueMatching!);
@@ -462,9 +462,9 @@ export class ReleaseNotesDisplayer extends LitElement {
         <div class="change-text">
           ${changePieces.map(piece => {
             if (doIssueMatching) {
-              var issuePieces = piece.match(this.issueMatching!);
+              const issuePieces = piece.match(this.issueMatching!);
               if (issuePieces) {
-                var href: string | null = this.issueLinkGenerator
+                const href: string | null = this.issueLinkGenerator
                   ? this.issueLinkGenerator(issuePieces[1])
                   : new URL(issuePieces[1], this.issueBaseUrl).href;
 
@@ -492,7 +492,7 @@ class ReleaseData {
   name?: string;
   notes?: Array<string> = [];
   pub_date?: string;
-  version: string = '';
+  version = '';
 }
 
 declare global {
