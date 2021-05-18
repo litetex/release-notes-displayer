@@ -30,7 +30,7 @@
     "format": "prettier src/* --write",
     "format:check": "prettier src/* --check",
     "lint": "npm run lint:eslint",
-    "lint:eslint": "eslint 'src/**/*.ts'",
+    "lint:eslint": "eslint src/**/*.ts",
     "serve": "web-dev-server --app-index dev/index.html --node-resolve --watch",
     "ncp": "ncp"
   },
