@@ -5,7 +5,7 @@ title: <release-notes-displayer> ⌲ Install
 
 # Install
 
-`<release-notes-displayer>` is distributed on npm, so you can install it locally or use it via npm CDNs like unpkg.com.
+`<release-notes-displayer>` is [distributed on npm](https://www.npmjs.com/package/@litetex/release-notes-displayer), so you can install it locally or use it via npm CDNs like unpkg.com.
 
 ## Local Installation
 

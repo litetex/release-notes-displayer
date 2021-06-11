@@ -9,9 +9,9 @@ title: <release-notes-displayer> ⌲ Home
 </header>
 
 <style>
-release-notes-displayer {
-    --release-notes-font-size-primary: 18px;
-}
+    release-notes-displayer {
+        --release-notes-font-size-primary: 18px;
+    }
 </style>
 <release-notes-displayer 
     data='[

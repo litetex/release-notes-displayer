@@ -4,6 +4,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPassthroughCopy("docs-src/docs.css");
   eleventyConfig.addPassthroughCopy("docs-src/.nojekyll");
+  eleventyConfig.addPassthroughCopy("docs-src/static/**");
   return {
     dir: {
       input: 'docs-src',
