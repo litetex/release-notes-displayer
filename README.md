@@ -4,7 +4,6 @@ A webcomponent which displays release notes
 ![release-notes-displayer example screenshot](assets/demo.png)
 
 Inspired by [GitHub desktop's release notes](https://desktop.github.com/release-notes/)
-
 <br>
 
 ### [Installing](https://litetex.github.io/release-notes-displayer/install) / [Usage](https://litetex.github.io/release-notes-displayer/examples) [![Docs online](https://img.shields.io/badge/docs-online-success?logo=read-the-docs&logoColor=eee)](https://litetex.github.io/release-notes-displayer)
