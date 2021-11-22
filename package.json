@@ -46,7 +46,7 @@
     "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
     "@web/dev-server": "^0.1.17",
-    "eslint": "^7.25.0",
+    "eslint": "^8.3.0",
     "ncp": "^2.0.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
