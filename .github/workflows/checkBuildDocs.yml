@@ -4,15 +4,20 @@ on:
   workflow_dispatch:
   push:
     branches: [ develop ]
-    paths: 
-      - 'docs-src/**'
-      - 'package.json'
+    paths-ignore: 
+      - '**.md'
+      - '.vscode/**'
+      - 'assets/**'
+      - 'dev/**'
+      - 'src/**'
   pull_request:
     branches: [ develop ]
-    paths:
-      - 'docs-src/**'
-      - 'package.json'
-
+    paths-ignore: 
+      - '**.md'
+      - '.vscode/**'
+      - 'assets/**'
+      - 'dev/**'
+      - 'src/**'
 jobs:
   build:
     runs-on: ubuntu-latest
