@@ -11,7 +11,7 @@ The project is based on the LitElement TypeScript starter, it may help to also c
 ## Setup
 Install dependencies using
 ```bash
-npm run i
+npm i
 ```
 
 ## Building

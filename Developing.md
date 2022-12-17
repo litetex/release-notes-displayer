@@ -1,6 +1,6 @@
 # Developing
 ## Tools for developing
-* [Visual Studio Code](https://visualstudio.microsoft.com/de/vs/)
+* [Visual Studio Code](https://code.visualstudio.com/)
 * [NodeJS + NPM](https://nodejs.org/en/download/)
 
 → Also checkout the [building guide](Building.md)
@@ -81,7 +81,7 @@ npm run docs:serve
 To watch the site files, and re-build automatically, run:
 
 ```bash
-npm run docs:watch
+npm run docs:gen:watch
 ```
 
 The site will usually be served at http://localhost:8000.
@@ -107,4 +107,4 @@ Make sure that the project
     ```
 5. has no uncommited files
 
-Based on https://github.com/PolymerLabs/lit-element-starter-ts
+Based on https://github.com/lit/lit-element-starter-ts

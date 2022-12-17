@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Init Git
       run: |
@@ -18,9 +18,9 @@ jobs:
         git config --global user.name "GitHub Actions"
     
     - name: Use Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
-        node-version: 14.x
+        node-version: 18.x
         registry-url: https://registry.npmjs.org/
         
     - run: npm i
@@ -36,7 +36,7 @@ jobs:
       id: create_version
       run: |
         tag_name=${{ steps.create_draft.outputs.tag_name }}
-        echo "::set-output name=version::$(echo ${tag_name:1})"
+        echo "version=$(echo ${tag_name:1})" >> $GITHUB_OUTPUT
 
     - run: npm version ${{ steps.create_version.outputs.version }}
 
@@ -47,3 +47,18 @@ jobs:
     - name: Git Push
       run: |
         git push origin
+
+  after_release:
+    runs-on: ubuntu-latest
+    needs: [publish]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        destination_branch: "develop"
+        pr_title: "Sync back after release"
+        pr_body: "An automated PR to sync changes back"
