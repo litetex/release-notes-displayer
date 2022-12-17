@@ -1,11 +1,5 @@
-import {
-  LitElement,
-  html,
-  customElement,
-  property,
-  css,
-  TemplateResult,
-} from 'lit-element';
+import {LitElement, html, css, TemplateResult} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 
 /**
  * Displays release notes
@@ -15,7 +9,7 @@ export class ReleaseNotesDisplayer extends LitElement {
   /**
    * Styles
    */
-  static styles = css`
+  static override styles = css`
     .release-notes-container {
       --background-color-primary: var(
         --release-notes-background-color-primary,
@@ -353,7 +347,7 @@ export class ReleaseNotesDisplayer extends LitElement {
   @property()
   issueLinkGenerator?: (issueKey: string) => string | null = undefined;
 
-  render(): TemplateResult {
+  override render(): TemplateResult {
     return html`
       <div class="release-notes-container d-flex">
         <div class="release-notes-container-inner">
@@ -363,7 +357,7 @@ export class ReleaseNotesDisplayer extends LitElement {
     `;
   }
 
-  createRenderRoot(): Element | ShadowRoot {
+  override createRenderRoot(): Element | ShadowRoot {
     if (this.disableShadowDOM) {
       return this;
     }

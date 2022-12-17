@@ -107,4 +107,4 @@ Make sure that the project
     ```
 5. has no uncommited files
 
-Based on https://github.com/PolymerLabs/lit-element-starter-ts
+Based on https://github.com/lit/lit-element-starter-ts
