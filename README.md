@@ -17,4 +17,4 @@ Install it using ``npm i @litetex/release-notes-displayer@dev``
 
 ### [Developing](Developing.md)
 
-### [Building](Building.md) [![Build Develop](https://img.shields.io/github/workflow/status/litetex/release-notes-displayer/Check%20Build/develop?label=build%20develop)](https://github.com/litetex/release-notes-displayer/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
+### [Building](Building.md) [![Build Develop](https://img.shields.io/github/actions/workflow/status/litetex/release-notes-displayer/checkBuild.yml?branch=develop)](https://github.com/litetex/release-notes-displayer/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
