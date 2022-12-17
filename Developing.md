@@ -1,6 +1,6 @@
 # Developing
 ## Tools for developing
-* [Visual Studio Code](https://visualstudio.microsoft.com/de/vs/)
+* [Visual Studio Code](https://code.visualstudio.com/)
 * [NodeJS + NPM](https://nodejs.org/en/download/)
 
 → Also checkout the [building guide](Building.md)
