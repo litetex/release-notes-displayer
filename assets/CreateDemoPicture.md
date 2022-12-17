@@ -1,7 +1,7 @@
 # Guide for creating the demo picture
 
 1. Make a screenshot of the demo (e.g. with Firefox's integrated screenshot tool) and save that screenshot somewhere
-2. make sure that the screenshot has no transparent areas
+2. Make sure that the screenshot has no transparent areas
 3. Embed the screenshot into the following html document 
     ```html
     <html>
