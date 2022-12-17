@@ -6,10 +6,12 @@ on:
     branches: [ develop ]
     paths: 
       - 'docs-src/**'
+      - 'package.json'
   pull_request:
     branches: [ develop ]
     paths:
       - 'docs-src/**'
+      - 'package.json'
 
 jobs:
   build:
