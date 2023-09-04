@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Init Git
       run: |
@@ -53,7 +53,7 @@ jobs:
     needs: [publish]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: pull-request
       uses: repo-sync/pull-request@v2
