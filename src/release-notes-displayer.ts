@@ -357,7 +357,7 @@ export class ReleaseNotesDisplayer extends LitElement {
     `;
   }
 
-  override createRenderRoot(): Element | ShadowRoot {
+  override createRenderRoot(): HTMLElement | DocumentFragment {
     if (this.disableShadowDOM) {
       return this;
     }
