@@ -50,7 +50,7 @@
     "eslint": "^8.30.0",
     "ncp": "^2.0.0",
     "nodemon": "^3.0.1",
-    "prettier": "^2.8.1",
+    "prettier": "^3.0.3",
     "rimraf": "^5.0.0",
     "rollup": "^2.79.1 ",
     "rollup-plugin-summary": "^1.4.3",
