@@ -11,7 +11,7 @@ module.exports = class Docs {
   }
 
   render(data) {
-    const customElements = data.api['11tydata'].customElements;
+    const customElements = data['api.11tydata'].customElements;
     const tags = customElements.tags;
     return `
       <h1>API</h1>
