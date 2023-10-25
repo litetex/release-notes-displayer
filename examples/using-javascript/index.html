@@ -119,7 +119,23 @@
 <h3>HTML</h3>
 <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>release-notes-displayer</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>rn<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
 <h3>JS</h3>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">let</span> rn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'rn'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>rn<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">[<br>{<br>    "notes": [<br>        "[Changed] Something changed"<br>    ],<br>    "version": "1.0.1"<br>},<br>{<br>    "notes": [<br>        "[Added] Added something",<br>        "[Fixed] Fixed something",<br>        "[Improved] Improved something",<br>        "[Removed] Removed something"<br>    ],<br>    "version": "1.0.0"<br>}]</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">let</span> rn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'rn'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+rn<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">[
+{
+    "notes": [
+        "[Changed] Something changed"
+    ],
+    "version": "1.0.1"
+},
+{
+    "notes": [
+        "[Added] Added something",
+        "[Fixed] Fixed something",
+        "[Improved] Improved something",
+        "[Removed] Removed something"
+    ],
+    "version": "1.0.0"
+}]</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
       </div>
     </section>

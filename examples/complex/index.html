@@ -130,7 +130,34 @@
 <h3>HTML</h3>
 <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>release-notes-displayer</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>rn<span class="token punctuation">"</span></span> <span class="token attr-name">issueBaseUrl</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://localhost/issue<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
 <h3>JS</h3>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">let</span> rn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'rn'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>rn<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">[<br>{<br>    "name": "New world",<br>    "notes": [<br>        "[Changed] Breaking changes"<br>    ],<br>    "version": "2.0.0"<br>},<br>{<br>    "notes": [<br>        "[Changed] Something changed #3"<br>    ],<br>    "pub_date": "2000-10-24",<br>    "version": "1.0.1"<br>},<br>{<br>    "name": "Initial release",<br>    "notes": [<br>        "[Added] Added something #1",<br>        "[Fixed] Fixed something #2",<br>        "[Improved] Improved something",<br>        "[Removed] Removed something",<br>        "Oh no somebody forgot the type"<br>    ],<br>    "pub_date": "2000-10-20",<br>    "version": "1.0.0"<br>}]</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">let</span> rn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'rn'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+rn<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">[
+{
+    "name": "New world",
+    "notes": [
+        "[Changed] Breaking changes"
+    ],
+    "version": "2.0.0"
+},
+{
+    "notes": [
+        "[Changed] Something changed #3"
+    ],
+    "pub_date": "2000-10-24",
+    "version": "1.0.1"
+},
+{
+    "name": "Initial release",
+    "notes": [
+        "[Added] Added something #1",
+        "[Fixed] Fixed something #2",
+        "[Improved] Improved something",
+        "[Removed] Removed something",
+        "Oh no somebody forgot the type"
+    ],
+    "pub_date": "2000-10-20",
+    "version": "1.0.0"
+}]</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
       </div>
     </section>

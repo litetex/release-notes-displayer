@@ -117,7 +117,24 @@
         "version": "1.0.0"
     }]' /></p>
 <h3>HTML</h3>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>release-notes-displayer</span> <br>    <span class="token attr-name">issueBaseUrl</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://localhost/issue<span class="token punctuation">"</span></span><br>    <span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>[<br>    {<br>        "notes": [<br>            "[Changed] Something changed #444"<br>        ],<br>        "version": "1.0.1"<br>    },<br>    {<br>        "notes": [<br>            "[Added] Added something #1",<br>            "[Fixed] Fixed something #2",<br>            "[Improved] Improved something #FakeNumber",<br>            "[Removed] Removed something #3"<br>        ],<br>        "version": "1.0.0"<br>    }]<span class="token punctuation">'</span></span> <span class="token punctuation">/></span></span></code></pre>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>release-notes-displayer</span> 
+    <span class="token attr-name">issueBaseUrl</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://localhost/issue<span class="token punctuation">"</span></span>
+    <span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>[
+    {
+        "notes": [
+            "[Changed] Something changed #444"
+        ],
+        "version": "1.0.1"
+    },
+    {
+        "notes": [
+            "[Added] Added something #1",
+            "[Fixed] Fixed something #2",
+            "[Improved] Improved something #FakeNumber",
+            "[Removed] Removed something #3"
+        ],
+        "version": "1.0.0"
+    }]<span class="token punctuation">'</span></span> <span class="token punctuation">/></span></span></code></pre>
 <h2>Using <code>issueLinkGenerator</code> (more complex - more options)</h2>
 <p>See also → <a href="../../api#Attributes-issueLinkGenerator">API-Ref</a></p>
 <p><release-notes-displayer 
@@ -154,9 +171,38 @@ document.getElementById('rn').issueLinkGenerator = (issueKey) => {
 };
 </script>
 <h3>HTML</h3>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>release-notes-displayer</span> <br>    <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>rn<span class="token punctuation">'</span></span><br>    <span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>[<br>    {<br>        "notes": [<br>            "[Changed] Something changed #99999999"<br>        ],<br>        "version": "1.0.1"<br>    },<br>    {<br>        "notes": [<br>            "[Added] Added something #1",<br>            "[Fixed] Fixed something #2",<br>            "[Improved] Improved something #FakeNumber #-3",<br>            "[Removed] Removed something #3"<br>        ],<br>        "version": "1.0.0"<br>    }]<span class="token punctuation">'</span></span> <span class="token punctuation">/></span></span></code></pre>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>release-notes-displayer</span> 
+    <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>rn<span class="token punctuation">'</span></span>
+    <span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>[
+    {
+        "notes": [
+            "[Changed] Something changed #99999999"
+        ],
+        "version": "1.0.1"
+    },
+    {
+        "notes": [
+            "[Added] Added something #1",
+            "[Fixed] Fixed something #2",
+            "[Improved] Improved something #FakeNumber #-3",
+            "[Removed] Removed something #3"
+        ],
+        "version": "1.0.0"
+    }]<span class="token punctuation">'</span></span> <span class="token punctuation">/></span></span></code></pre>
 <h3>JavaScript</h3>
-<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// Find links in the format I-{number}</span><br>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'rn'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>issueMatching <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">(I\-\d+)</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">;</span><br><br><span class="token comment">// Build custom link</span><br>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'rn'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function-variable function">issueLinkGenerator</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">issueKey</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>    <span class="token keyword">var</span> normalizedIssueKey <span class="token operator">=</span> issueKey<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token comment">// If the issueNumber is greater than 1 Mio then skip</span><br>    <span class="token keyword">if</span><span class="token punctuation">(</span>normalizedIssueKey <span class="token operator">></span> <span class="token number">1_000_000</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span><br>    <span class="token punctuation">}</span><br><br>    <span class="token keyword">return</span> <span class="token string">"http://localhost/i/"</span> <span class="token operator">+</span> normalizedIssueKey <span class="token operator">+</span> <span class="token string">"/overview?theme=dark"</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// Find links in the format I-{number}</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'rn'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>issueMatching <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">(I\-\d+)</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">// Build custom link</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'rn'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function-variable function">issueLinkGenerator</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">issueKey</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> normalizedIssueKey <span class="token operator">=</span> issueKey<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// If the issueNumber is greater than 1 Mio then skip</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>normalizedIssueKey <span class="token operator">></span> <span class="token number">1_000_000</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token string">"http://localhost/i/"</span> <span class="token operator">+</span> normalizedIssueKey <span class="token operator">+</span> <span class="token string">"/overview?theme=dark"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
       </div>
     </section>
