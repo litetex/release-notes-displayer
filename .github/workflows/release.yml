@@ -38,7 +38,7 @@ jobs:
         tag_name=${{ steps.create_draft.outputs.tag_name }}
         echo "version=$(echo ${tag_name:1})" >> $GITHUB_OUTPUT
 
-    - run: npm version ${{ steps.create_version.outputs.version }}
+    - run: npm --verbose version ${{ steps.create_version.outputs.version }}
 
     - run: npm publish --access public
       env:
