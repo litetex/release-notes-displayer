@@ -54,7 +54,7 @@
     "prettier": "^3.0.3",
     "rimraf": "^5.0.0",
     "rollup": "^2.79.1 ",
-    "rollup-plugin-summary": "^1.4.3",
+    "rollup-plugin-summary": "^2.0.0",
     "typescript": "^5.0.2",
     "web-component-analyzer": "^2.0.0"
   },
